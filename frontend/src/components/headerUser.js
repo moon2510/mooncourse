@@ -1,14 +1,18 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 import imgLogo from "../statics/images/logo.png";
 import "../styles/header.css";
+import users from "../data/User";
+import { FaUserAlt } from "react-icons/fa";
 
-const Header = () => {
+const HeaderUser = () => {
+  const user = users.find((p) => p._id === "2");
+  console.log("Test user:", user);
   function indicatorInit(navWrapper, indicatorName, navItems) {
     const nav = document.querySelector(navWrapper);
     const indicator = document.querySelector(indicatorName);
     const items = document.querySelectorAll(navItems);
-
     function indicatorHandler(el) {
       items.forEach((item) => {
         item.classList.remove("active");
@@ -63,18 +67,15 @@ const Header = () => {
           </nav>
         </div>
 
-        <div class="account">
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            <div class="sign">Login</div>
-          </Link>
-
-          <Link to="/register" style={{ textDecoration: "none" }}>
-            <div class="sign">Register</div>
-          </Link>
+        <div class="profile">
+          <div className="avt">
+            <FaUserAlt size={25} color={"#2b8888"} />
+          </div>
+          <p> {user.fullName}</p>
         </div>
       </header>
     </div>
   );
 };
 
-export default Header;
+export default HeaderUser;

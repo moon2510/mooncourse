@@ -1,6 +1,5 @@
-import abf from "../statics/images/python.jpg"
 
-const products = [
+const courses = [
   {
     _id: "1",
     name: "Basic Python Programming",
@@ -9,7 +8,8 @@ const products = [
     numberLesson: 3,
     numberLearner: 0,
     image: "/images/python.jpg",
-    rating: 70
+    rating: 70,
+    price: 5,
   },
   {
     _id: "2",
@@ -19,25 +19,27 @@ const products = [
     numberLesson: 3,
     numberLearner: 0,
     image: "/images/csharp.jpg",
-    rating: 5.0
+    rating: 5.0,
+    price: 0,
   },
   {
     _id: "3",
-    name: "Basic Structured Query Language (SQL)",
+    name: "Structured Query Language ",
     hour: 250,
     level: "Easy",
     numberLesson: 10,
     numberLearner: 0,
     image: "/images/sql.jpg",
-    rating: 5.0
+    rating: 5.0,
+    price: 0,
   },
   {
     _id: "4",
-    name: "Velcro Ballerinas For Girls  (Pink)",
+    name: "Python Machine learning",
     hour: 400,
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-    level: 89,
+    level: "Hard",
     numberLesson: 3,
     numberLearner: 4,
     image: "/images/AI.jpg",
@@ -45,11 +47,11 @@ const products = [
   },
   {
     _id: "5",
-    name: "Velcro Ballerinas For Girls  (Pink)",
+    name: "Data Science",
     hour: 400,
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-    level: 89,
+    level: "Easy",
     numberLesson: 3,
     numberLearner: 4,
     image: "/images/datascience.jpg",
@@ -57,11 +59,11 @@ const products = [
   },
   {
     _id: "6",
-    name: "Velcro Ballerinas For Girls  (Pink)",
+    name: "Blockchain Basics",
     hour: 400,
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-    level: 89,
+    level: "Medium",
     numberLesson: 3,
     numberLearner: 4,
     image: "/images/blockchain.jpg",
@@ -70,4 +72,4 @@ const products = [
 
 ];
 
-export default products;
+export default courses;

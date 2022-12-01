@@ -1,9 +1,8 @@
 import React from "react";
 import Header from "../components/header";
+import HeaderUser from "../components/headerUser";
 import CourseSection from "../components/home/coursesection";
 import Footer from "../components/footer";
-import abf from "../statics/images/python.jpg"
-
 // import Footer from "./../components/Footer";
 
 const HomePage = () => {
@@ -11,6 +10,7 @@ const HomePage = () => {
   return (
     <div>
       <Header />
+      {/* <HeaderUser /> */}
       <CourseSection/>
       <Footer/>
       

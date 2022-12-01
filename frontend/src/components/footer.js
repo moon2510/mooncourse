@@ -8,8 +8,6 @@ import { ImLocation2 } from "react-icons/im";
 import { AiFillPhone, AiFillLinkedin } from "react-icons/ai";
 import { BsFacebook, BsGithub, BsYoutube } from "react-icons/bs";
 
-
-
 const Footer = () => {
   return (
     <footer class="footer-distributed">
@@ -22,17 +20,16 @@ const Footer = () => {
         </div>
 
         <p class="footer-links">
-          <a href="#" class="link-1">
-            Home
-          </a>
-
-          <a href="#">Blog</a>
-
-          <a href="#">Course</a>
-
-          <a href="#">About</a>
-
-          <a href="#">Contact</a>
+      
+          <Link to="/">
+           Home
+          </Link>
+          <Link to="/">
+            Blog
+          </Link>
+          <Link to="/">
+            About
+          </Link>
         </p>
       </div>
 
@@ -65,18 +62,22 @@ const Footer = () => {
         </div>
 
         <div class="footer-icons">
-          <a href="#">
-            <AiFillLinkedin size={28}/>
-          </a>
-          <a href="#">
-            <BsFacebook size={28}/>
-          </a>
-          <a href="#">
-            <BsGithub size={28}/>
-          </a>
-          <a href="#">
-            <BsYoutube size={28}/>
-          </a>
+          <Link to="/home">
+            <AiFillLinkedin size={28} />
+          </Link>
+
+          <Link to="/home">
+            <BsFacebook size={28} />
+          </Link>
+
+          <Link to="/home">
+            <BsGithub size={28} />
+          </Link>
+
+          <Link to="/home">
+            <BsYoutube size={28} />
+          </Link>
+          
         </div>
       </div>
       <hr />
