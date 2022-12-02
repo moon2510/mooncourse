@@ -3,7 +3,7 @@ const { default: validator } = require('validator');
 
 const User = new mongoose.Schema(
   {
-	fullName: {
+	name: {
 		type: String,
 		required: [true, 'User name is required'],
 		trim: true,
@@ -28,6 +28,6 @@ const User = new mongoose.Schema(
   { collection: "user-data" }
 );
 
-const UserModel = mongoose.model("UserData", User);
+const UserModel = mongoose.model("User", User);
 
 module.exports = UserModel;

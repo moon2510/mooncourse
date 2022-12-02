@@ -26,7 +26,7 @@ function Login() {
     // onChangeInput(res.email)
     // loginSubmit();
     console.log("Login successfully! Current user: ", res.profileObj.name);
-    window.location.href = "/home";
+    window.location.href = "/";
   };
 
   const onFailure = (res) => {
@@ -48,79 +48,75 @@ function Login() {
 
   return (
     <div className="loginPage">
-      <div>
-        <div className="login-box">
-          <h2>Login</h2>
-          <form onSubmit={loginSubmit} className="formLogin">
-            <div className="user-box">
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Email"
-                value={user.email}
-                onChange={onChangeInput}
-              />
-              <label>Email</label>
-            </div>
-            <div className="user-box">
-              <input
-                type="password"
-                name="password"
-                required
-                placeholder="Password"
-                value={user.password}
-                onChange={onChangeInput}
-              />
-              <label>Password</label>
-            </div>
-           
-            <Button type="submit" className="buttonLogin">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Login
-            </Button>
-            <p id="signup">
-              Don’t have a account,{" "}
-              <Link
-                to="/register"
-                className="linkSignup"
-                style={{ textDecoration: "none", color: "#21BBBB" }}
-              >
-                Register
-              </Link>
-            </p>
-          </form>
-          <div className="orgray">
-            <div className="ortwo">
-              <hr width="100%" size="1px" align="left" color="gainsboro" />
-            </div>
-            <div className="or">Or</div>
-            <div className="ortwo">
-              <hr width="100%" size="1px" align="left" color="gainsboro" />
-            </div>
+      <div className="login-box">
+        <h2>Login</h2>
+        <form onSubmit={loginSubmit} className="formLogin">
+          <div className="user-box">
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Email"
+              value={user.email}
+              onChange={onChangeInput}
+            />
+            <label>Email</label>
           </div>
-          <div className="social">
-            <div className="googleLogin">
-              <GoogleLogin
-                clientId={clientID}
-                buttonText={null}
-                onSuccess={onSuccess}
-                onFailure={onFailure}
-                cookiePolicy={"single_host_origin"}
-                isSignedIn={true}
-                render={(renderProps) => (
-                  <button
-                    onClick={renderProps.onClick}
-                    className="googleButton"
-                  >
-                    <FcGoogle />
-                  </button>
-                )}
-              />
-            </div>
+          <div className="user-box">
+            <input
+              type="password"
+              name="password"
+              required
+              placeholder="Password"
+              value={user.password}
+              onChange={onChangeInput}
+            />
+            <label>Password</label>
+          </div>
+
+
+          <Button type="submit" className="buttonLogin">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Login
+          </Button>
+          <p id="signup">
+            Don’t have a account,{" "}
+            <Link
+              to="/register"
+              className="linkSignup"
+              style={{ textDecoration: "none", color: "#21BBBB" }}
+            >
+              Register
+            </Link>
+          </p>
+        </form>
+        <div className="orgray">
+          <div className="ortwo">
+            <hr width="100%" size="1px" align="left" color="gainsboro" />
+          </div>
+          <div className="or">Or</div>
+          <div className="ortwo">
+            <hr width="100%" size="1px" align="left" color="gainsboro" />
+          </div>
+        </div>
+        <div className="social">
+          <div className="googleLogin">
+            <GoogleLogin
+              clientId={clientID}
+              buttonText={null}
+              onSuccess={onSuccess}
+              onFailure={onFailure}
+              cookiePolicy={"single_host_origin"}
+              isSignedIn={true}
+              render={(renderProps) => (
+                <button onClick={renderProps.onClick} className="googleButton">
+                  <FcGoogle />
+                </button>
+              )}
+            />
           </div>
         </div>
       </div>
