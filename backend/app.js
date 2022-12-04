@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require("cors");
 const mongoose = require("mongoose");
+const isLoggedIn = require('../backend/middleware/auth')
 
 const app = express();
 app.use(express.json());
@@ -13,8 +14,7 @@ app.use(cors());
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-
+var courseRouter = require('./routes/courses');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
+app.use('/lecturer', courseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
