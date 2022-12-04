@@ -36,11 +36,20 @@ function Login() {
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/user/login", { ...user });
-
-      localStorage.setItem("firstLogin", true);
-
-      window.location.href = "/";
+      const userLogin=await axios.post("/user/login", { ...user });
+      if (userLogin.data.user){
+        localStorage.setItem("checkLogin", true);
+        localStorage.setItem("user", userLogin.data.user);
+        localStorage.setItem("name", userLogin.data.user.name);
+        localStorage.setItem("email", userLogin.data.user.email);
+        localStorage.setItem("role", userLogin.data.user.role);
+        localStorage.setItem("id", userLogin.data.user._id);
+      }
+      else{
+        localStorage.setItem("checkLogin", false);
+      }
+    console.log("ABCDEF", userLogin)
+    window.location.href = "/";
     } catch (err) {
       alert(err.response.data.msg);
     }
@@ -56,7 +65,7 @@ function Login() {
               type="email"
               name="email"
               required
-              placeholder="Email"
+              placeholder=""
               value={user.email}
               onChange={onChangeInput}
             />
@@ -67,7 +76,7 @@ function Login() {
               type="password"
               name="password"
               required
-              placeholder="Password"
+              placeholder=""
               value={user.password}
               onChange={onChangeInput}
             />

@@ -6,12 +6,6 @@ const courseSchema = new mongoose.Schema({
         require: true,
         maxlength: 80
     },
-    totalHour: {
-        type: Number,
-        require: true,
-        default:0
-    },
-
     description: {
         type: String,
         required: [true, 'Please provide description for course'],
@@ -35,8 +29,20 @@ const courseSchema = new mongoose.Schema({
     rating: {
         type: Number,
         require: true,
-        default:100
+        default:4.0
     },
+    price: {
+        type: Number,
+        required: [true, 'Please provide price for course'],
+    },
+    authorId:{
+        type: String,
+        required: [true],
+    },
+    image:{
+        type: String,
+        required: [true],
+    }
 
 },
     { timestamps: true }

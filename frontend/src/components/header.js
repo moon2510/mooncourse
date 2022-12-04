@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import imgLogo from "../statics/images/logo.png";
 import "../styles/header.css";
+import { FaUserAlt } from "react-icons/fa";
+import { RiLogoutCircleRLine } from "react-icons/ri";
 
 const Header = () => {
+  const logout = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
+  const about = () => {
+    window.location.href = "/about";
+  };
+
   function indicatorInit(navWrapper, indicatorName, navItems) {
     const nav = document.querySelector(navWrapper);
     const indicator = document.querySelector(indicatorName);
@@ -39,39 +49,52 @@ const Header = () => {
   return (
     <div>
       <header>
-        <div class="logo">
+        <div className="logo">
           <img src={imgLogo} alt="" />
         </div>
-        <div class="wrapper">
-          <nav class="nav nav1">
-            <Link to="/home" class="nav-item active" data-color="#663399">
-              Home
-            </Link>
-            <Link to="/about" class="nav-item" data-color="#446A46">
-              About
-            </Link>
-            <Link to="/course" class="nav-item" data-color="#D82148">
+        <div className="wrapper">
+          <nav className="nav nav1">
+            
+           
+            <Link to="/course" className="nav-item" data-color="#D82148">
               Course
             </Link>
-            <Link to="#" class="nav-item" data-color="#FFB72B">
+            <Link to="#" className="nav-item" data-color="#FFB72B">
               Blog
             </Link>
-            <Link to="#" class="nav-item" data-color="#1C0A00">
+            <Link to="#" className="nav-item" data-color="#1C0A00">
               Contact
             </Link>
-            <span class="nav-indicator"></span>
+            <span className="nav-indicator"></span>
           </nav>
         </div>
 
-        <div class="account">
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            <div class="sign">Login</div>
-          </Link>
+        {localStorage.getItem("checkLogin") ? (
+          <div className="profile_logout">
+            <div className="profile">
+              <div className="avt">
+                <FaUserAlt size={25} color={"#2b8888"} />
+              </div>
+              <p> {localStorage.getItem("name")}</p>
+            </div>
 
-          <Link to="/register" style={{ textDecoration: "none" }}>
-            <div class="sign">Register</div>
-          </Link>
-        </div>
+            <div className="logout">
+              <button onClick={logout}>
+                <RiLogoutCircleRLine size={25} color={"#2b8888"} />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="account">
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <div className="sign">Login</div>
+            </Link>
+
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              <div className="sign">Register</div>
+            </Link>
+          </div>
+        )}
       </header>
     </div>
   );

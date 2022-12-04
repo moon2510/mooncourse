@@ -10,16 +10,16 @@ import { BsFacebook, BsGithub, BsYoutube } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <footer class="footer-distributed">
-      <div class="footer-left">
+    <footer className="footer-distributed">
+      <div className="footer-left">
         <h3>
           Moon Course<span></span>
         </h3>
-        <div class="logofooter">
+        <div className="logofooter">
           <img src={imgLogo} alt="" />
         </div>
 
-        <p class="footer-links">
+        <p className="footer-links">
       
           <Link to="/">
            Home
@@ -33,15 +33,15 @@ const Footer = () => {
         </p>
       </div>
 
-      <div class="footer-right">
-        <p class="footer-company-about">
+      <div className="footer-right">
+        <p className="footer-company-about">
           <span>About the Moon Course</span>
           Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
           euismod convallis velit, eu auctor lacus vehicula sit amet.
         </p>
       </div>
 
-      <div class="footer-center">
+      <div className="footer-center">
         <div>
           <ImLocation2 size={25} color={"White"} />
           <p>
@@ -61,7 +61,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div class="footer-icons">
+        <div className="footer-icons">
           <Link to="/home">
             <AiFillLinkedin size={28} />
           </Link>
@@ -81,8 +81,8 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div class="footer-bottom-wrapper">
-        <span class="footer-bottom-rights">
+      <div className="footer-bottom-wrapper">
+        <span className="footer-bottom-rights">
           {" "}
           - All Rights Reserved by MoonCourse © 2022-{" "}
         </span>

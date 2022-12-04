@@ -8,7 +8,7 @@ const courses = [
     numberLesson: 3,
     numberLearner: 0,
     image: "/images/python.jpg",
-    rating: 70,
+    rating: 1.2,
     price: 5,
   },
   {

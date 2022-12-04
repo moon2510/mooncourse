@@ -1,0 +1,96 @@
+.createCourse{
+    text-align: center;
+}
+
+
+.formCreateCourse .row {
+  margin: 0 auto;
+  padding: 60px 30px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 800px;
+  display: flex;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.formCreateCourse .row:first-child {
+  padding: 40px 30px;
+  font-weight: 700;
+  background: #ffffff;
+}
+
+.formCreateCourse .row span {
+  margin: 30px 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="text"]:-ms-input-placeholder {
+  color: #377D6A;
+  font-weight: 300;
+}
+
+
+.inputtext {
+  display: flex;
+  width: 400px;
+  padding: 10px 0 10px 15px;
+  font-family: "Open Sans", sans;
+  font-weight: 400;
+  color: #377D6A;
+  background: #ffffff;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
+  transition: all .3s ease-in-out;
+  border-radius: 15px;
+  border: #0c9999 2px solid;
+}
+.inputtext label {
+  display: inline-block;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 5px;
+  padding: 3px 13px;
+  text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+  transition: all .3s ease-in-out;
+  border-radius: 3px;
+  background: #0c9999;
+}
+
+.inputtext:focus,
+.inputtext:active {
+  color: #377D6A;
+  background: rgb(252, 251, 251);
+}
+.inputtext:focus + label,
+.inputtext:active + label {
+  background: #2e9797;
+  color: #fff;
+}
+
+.courseInput{
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+}
+.field{
+  position: absolute;
+  margin-right: 530px;
+  width: 120px;
+  background-color:#eeffff ;
+  border-radius: 15px;
+  padding: 5px 10px;
+  text-align: center;
+  color: #1a6f6f;
+  font-size: 14px;
+  border: #0c9999 2px solid;
+}
+.buttonCreate{
+  width: 150px;
+  
+}

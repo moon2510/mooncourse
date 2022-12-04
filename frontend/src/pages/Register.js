@@ -1,88 +1,6 @@
-// import { useState } from "react";
-// import { Alert } from "react-bootstrap";
-// import { useNavigate } from "react-router-dom";
-// import { GoogleLogin, GoogleLogout } from "react-google-login";
+
 import { Button } from "react-bootstrap";
 import "../styles/login.css";
-// const clientID =
-//   "463573475496-rnvq84ltmnm5ffmpk1786pbl2as1v2j0.apps.googleusercontent.com";
-
-// function Register() {
-//   const navigate = useNavigate();
-
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const onSuccess = (res) => {
-//     console.log("Logout successfully!");
-//   };
-
-//   async function registerUser(event) {
-//     event.preventDefault();
-
-//     const response = await fetch("http://localhost:5000/api/register", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         name,
-//         email,
-//         password,
-//       }),
-//     });
-
-//     const data = await response.json();
-
-//     if (data.status === "ok") {
-//       navigate("/login");
-//     } else {
-//       alert("This Email has been Existed ");
-//     }
-//   }
-
-//   return (
-//     <div>
-//       <h1>Register</h1>
-//       <form onSubmit={registerUser}>
-//         <input
-//           value={name}
-//           onChange={(e) => setName(e.target.value)}
-//           type="text"
-//           placeholder="Name"
-//         />
-//         <br />
-//         <input
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           type="email"
-//           placeholder="Email"
-//         />
-//         <br />
-//         <input
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           type="password"
-//           placeholder="Password"
-//         />
-//         <br />
-//         <input type="submit" value="Register" />
-//       </form>
-
-//       <div id="signOutGoogle">
-//         <GoogleLogout
-//           clientId={clientID}
-//           buttonText="Sign out"
-//           onLogoutSuccess={onSuccess}
-//         />
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Register;
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -104,7 +22,7 @@ function Register() {
     try {
       await axios.post("http://localhost:5000/user/register", { ...user });
 
-      localStorage.setItem("firstLogin", true);
+      localStorage.setItem("checkLogin", true);
 
       window.location.href = "/login";
     } catch (err) {

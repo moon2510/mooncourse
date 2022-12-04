@@ -44,7 +44,7 @@ const CourseSection = () => {
                           {course.price === 0 ? <div> Free </div> : <div><RiMoneyDollarCircleFill size={25} color={"#2b8888"}/> {course.price} </div>}
                         </div>
                         <Link to={`/courses/${course._id}`}>
-                          <div class="buttonLearnNow">Learn Now</div>
+                          <div className="buttonLearnNow">Learn Now</div>
                         </Link>
                       </div>
                     </div>
