@@ -1,0 +1,11 @@
+.courseName{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+.courseName p{
+    width: 500px;
+    font-size: 50px;
+    background-color: antiquewhite;
+}

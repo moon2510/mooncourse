@@ -75,7 +75,8 @@ const LecturerCourseList = () => {
                           </div>
                         )}
                       </div>
-                      <Link to={`/courses/${course._id}`}>
+                      <Link to={`/lecturer/course/${course._id}`}>
+                      {[localStorage.setItem("courseID",course._id),localStorage.setItem("courseName",course.name)]}
                         <div className="buttonLearnNow">Detail</div>
                       </Link>
                     </div>
