@@ -2,7 +2,7 @@ import React from "react";
 
 import SideBar from "../../components/lecturer/sidebar";
 
-import LecturerCourseList from "../../components/lecturer/lecturercouse";
+import LecturerCourseList from "../../components/lecturer/lecturercourse";
 
 const LecturerCoursePage = () => {
   window.scrollTo(0, 0);

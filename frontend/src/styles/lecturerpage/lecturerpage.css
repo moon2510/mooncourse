@@ -1,3 +1,6 @@
 .lectureHome{
     background-color:aquamarine !important;
 }
+.courseCreateButton{
+    text-align: right;
+}

@@ -6,12 +6,7 @@ const courseControllers = require('../controllers/courseController')
 const auth = require('../middleware/auth')
 
 router.post('/createCourse', courseControllers.createCourse)
-router.get('/myCourse', courseControllers.getCourse)
-
-// router.post('/login', userCtrl.login)
-
-// router.get('/logout', userCtrl.logout)
-
+router.get('/myCourse/:authorId', courseControllers.getCourse)
 
 // router.get('/infor', auth,  userCtrl.getUser)
 

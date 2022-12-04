@@ -42,7 +42,7 @@ const courseControllers = {
   getCourse: async (req, res) => {
     try {
       const courses = await Course.find({
-        authorId: "6389d5b9f530f5a2ec01595f"
+        authorId: req.params.authorId
       });
       if (courses) {
         res.json(courses);
