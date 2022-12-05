@@ -50,7 +50,19 @@ const courseControllers = {
         res.status(404);
         throw new Error("Courses not Found");
       }
-      // console.log("NIIIII", store.get("userID"));
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getAllCourse:  async (req, res) => {
+    try {
+      const courses = await Course.find({});
+      if (courses) {
+        res.json(courses);
+      } else {
+        res.status(404);
+        throw new Error("Courses not Found");
+      }
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

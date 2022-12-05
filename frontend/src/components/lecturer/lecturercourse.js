@@ -5,10 +5,14 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import Rating from "../home/rating";
 import axios from "axios";
 import "../../styles/lecturerpage/lecturerpage.css"
+import { useDispatch } from "react-redux";
+import { updateCourseDetail } from "../.././redux/slices/courseSlice";
+
 
 const LecturerCourseList = () => {
   const [courses, setCourses] = useState("");
   const authorId = localStorage.getItem("id");
+  const dispatch = useDispatch();
 
   const fetchData = async () => {
     const result = await axios.get(
@@ -23,6 +27,10 @@ const LecturerCourseList = () => {
 
   if (courses === "") {
     return <div></div>;
+  }
+
+  const reduxCourseDetail = (course) => {
+    dispatch(updateCourseDetail(course));
   }
 
   return (
@@ -76,8 +84,7 @@ const LecturerCourseList = () => {
                         )}
                       </div>
                       <Link to={`/lecturer/course/${course._id}`}>
-                      {[localStorage.setItem("courseID",course._id),localStorage.setItem("courseName",course.name)]}
-                        <div className="buttonLearnNow">Detail</div>
+                        <button onClick={()=>reduxCourseDetail(course)} className="buttonLearnNow">Detail</button>
                       </Link>
                     </div>
                   </div>

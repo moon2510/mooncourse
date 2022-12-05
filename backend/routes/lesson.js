@@ -6,6 +6,7 @@ const lessonControllers = require('../controllers/lessonController')
 const auth = require('../middleware/auth')
 
 router.post('/createLesson', lessonControllers.createLesson)
+router.get('/getlesson/:courseId', lessonControllers.getLesson)
 // router.get('/myCourse/:authorId', courseControllers.getCourse)
 
 

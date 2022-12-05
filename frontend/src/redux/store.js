@@ -1,5 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch, useSelector } from "react-redux";
+import { configureStore,combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import {
   persistReducer,
@@ -10,20 +9,22 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import courseReducer from "./courseSlice";
+import courseReducer from "./slices/courseSlice";
 
 
-const reducer = {
+const rootReducer = combineReducers({
     course: courseReducer
-}
+});
+
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ['auth', 'courses']
+  whitelist: ['course']
 };
 
-export const persist = persistReducer(persistConfig, reducer)
+export const persist = persistReducer(persistConfig, rootReducer)
+
 export const store = configureStore({
   reducer: persist,
   middleware: (getDefaultMiddleware) =>

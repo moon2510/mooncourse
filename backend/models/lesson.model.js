@@ -9,7 +9,7 @@ const lessonSchema = new mongoose.Schema({
     description:{
         type: String
     },
-    courseID:{
+    courseId:{
         type: String
     }
 

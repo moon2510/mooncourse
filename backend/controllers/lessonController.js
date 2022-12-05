@@ -2,16 +2,18 @@ const Lesson = require("../models/lesson.model");
 require("dotenv").config();
 
 const lessonControllers = {
-  createCourse: async (req, res) => {
+  createLesson: async (req, res) => {
     try {
       const {
         name,
         description,
+        courseId
       } = req.body;
 
       const newLesson = new Lesson({
         name,
-        description
+        description,
+        courseId
       });
 
       // Save mongodb
@@ -25,22 +27,21 @@ const lessonControllers = {
       return res.status(500).json({ msg: err.message });
     }
   },
-//   getLesson: async (req, res) => {
-//     try {
-//       const courses = await Course.find({
-//         authorId: req.params.authorId
-//       });
-//       if (courses) {
-//         res.json(courses);
-//       } else {
-//         res.status(404);
-//         throw new Error("Courses not Found");
-//       }
-//       // console.log("NIIIII", store.get("userID"));
-//     } catch (err) {
-//       return res.status(500).json({ msg: err.message });
-//     }
-//   },
+  getLesson: async (req, res) => {
+    try {
+      const lesson = await Lesson.find({
+        courseId: req.params.courseId
+      });
+      if (lesson) {
+        res.json(lesson);
+      } else {
+        res.status(404);
+        throw new Error("Lesson not Found");
+      }
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 module.exports = lessonControllers;
