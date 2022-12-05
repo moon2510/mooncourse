@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/lecturerpage/createcourse.css";
 import axios from "axios";
+import { storage } from "../../../src/firebase";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { MdEmail } from "react-icons/md";
 import { ImLocation2 } from "react-icons/im";
 import { AiFillPhone, AiFillLinkedin } from "react-icons/ai";
 import { BsFacebook, BsGithub, BsYoutube } from "react-icons/bs";
-
+import { async } from "@firebase/util";
 
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const CreateCourse = () => {
@@ -16,12 +18,34 @@ const CreateCourse = () => {
     level: "",
     price: "",
     authorId: localStorage.getItem("id"),
-    image: "abcde",
+    image: "",
   });
+  console.log(course);
 
-  const onChangeInput = (e) => {
+  //image firebase
+
+  const uploadImage = async (file, name) => {
+    try {
+      if (!file) return null;
+      const storageRef = ref(storage, `${file.name}`);
+
+      uploadBytes(storageRef, file).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          setCourse({ ...course, [name]: downloadURL });
+        });
+      });
+    } catch (error) {
+      return error;
+    }
+  };
+  const onChangeInput = async (e) => {
     const { name, value } = e.target;
-    setCourse({ ...course, [name]: value });
+    if (name === "image") {
+      const imageUpload = e.target.files[0];
+      await uploadImage(imageUpload, name);
+    } else {
+      setCourse({ ...course, [name]: value });
+    }
   };
   const createCourseSubmit = async (e) => {
     e.preventDefault();
@@ -105,10 +129,19 @@ const CreateCourse = () => {
               </label>
             </span>
           </div>
-          {/* <div className="courseInput">
-            <input type="file" />
-          </div> */}
-          <button type="submit" className="buttonCreate">Create Course</button>
+
+          <div className="uploadImage">
+            <input
+              name="image"
+              onChange={onChangeInput}
+              type="file"
+              accept="image/*"
+            />
+          </div>
+
+          <button type="submit" className="buttonCreate">
+            Create Course
+          </button>
         </div>
       </form>
     </div>

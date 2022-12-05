@@ -33,7 +33,7 @@ const SideBar = ({ mycourse, createcourse, dashboard }) => {
           <span>My Course</span>
         </Link>
         <Link
-          to="createcourse"
+          to="/lecturer/createcourse"
           className={createcourse ? "active" : "inactive"}
         >
           <i className="fas fa-book-medical"></i>

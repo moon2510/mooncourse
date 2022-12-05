@@ -5,7 +5,12 @@ import "../../styles/lecturerpage/coursedetail.css";
 import axios from "axios";
 
 import Popup from "reactjs-popup";
+
 import { AiFillPlusCircle } from "react-icons/ai";
+import { FaUserFriends } from "react-icons/fa";
+import { BiTimeFive } from "react-icons/bi";
+import { VscBook } from "react-icons/vsc";
+
 import { useSelector } from "react-redux";
 import { selectCourse } from "../.././redux/slices/courseSlice";
 
@@ -51,16 +56,47 @@ const CourseDetail = () => {
 
       //   localStorage.setItem("checkLogin", true);
 
-      window.location.href = "/lecture/";
+      //   window.location.href = "/lecture/";
+      window.location.reload();
     } catch (err) {
       alert(err.response.data.msg);
     }
   };
+  let a = course.rating + ",100";
+
   return (
     <div className="courseDetail">
-      <div className="courseName">
-        <p>{course.name}</p>
+      <div class="courses-container">
+        <div class="course">
+          <div class="course-preview">
+            <h6>Course</h6>
+            <h2>{course.name}</h2>
+            {/* <a href="#">
+                  View all chapters <i class="fas fa-chevron-right"></i>
+                </a> */}
+
+            <button class="btn">Continue</button>
+
+            <div className="infoCourse">
+              <div className="itemInfo">
+                <VscBook size={25} />
+                <p>{course.numberLesson} lesson</p>
+              </div>
+
+              <div className="itemInfo">
+                <FaUserFriends size={25} />
+                <p>{course.numberLearner} learners</p>
+              </div>
+            </div>
+          </div>
+          <div class="course-info">
+            <div class="flex-wrapper">
+              <div class="single-chart">Description: {course.description}</div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <Link to={"/lecturer/createcourse"} className="wrap-createbutton"></Link>
       <Popup
         modal
@@ -120,31 +156,26 @@ const CourseDetail = () => {
         </form>
       </Popup>
       <div className="coursecontainer row">
-              {lessonList.map((lesson) => (
-                <div
-                  className="coursegrid col-lg-4 col-md-6 col-sm-6"
-                  key={lesson._id}
-                >
-                  <div className="border-course courseCard">
+        {lessonList.map((lesson) => (
+          <div
+            className="coursegrid col-lg-4 col-md-6 col-sm-6"
+            key={lesson._id}
+          >
+            <div className="border-course courseCard">
+              <div className="coursetext">
+                <h3 className="coursename">
+                  <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
+                </h3>
 
-                    <div className="coursetext">
-                      <h3 className="coursename">
-                        <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
-                      </h3>
-
-                      <p>{course.numberLesson} lessons</p>
-                      <p>Difficulty: {course.level}</p>
-                    </div>
-                    <hr />
-                    <div className="wrapButtonLearnNow">
-                      
-                      ABCD
-                    </div>
-                  </div>
-                </div>
-              ))}
+                <p>{course.numberLesson} lessons</p>
+                <p>Difficulty: {course.level}</p>
+              </div>
+              <hr />
+              <div className="wrapButtonLearnNow">ABCD</div>
             </div>
-
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

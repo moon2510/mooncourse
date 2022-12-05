@@ -5,9 +5,11 @@
 }
 .container{
   margin-top: 125px;
+
 }
 .coursegrid {
   margin-bottom: 50px;
+  
 }
 
 .courseImage {
@@ -36,6 +38,7 @@
 .courseCard {
   box-shadow: var(--aicolor) 0px 10px 12px;
   margin-right: 15px;
+  background-color: #fff !important;
 }
 
 .rating {

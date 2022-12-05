@@ -1,5 +1,6 @@
 .createCourse{
     text-align: center;
+    margin-top: 100px;
 }
 
 
@@ -11,8 +12,10 @@
   text-align: center;
   width: 800px;
   display: flex;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.044) 0px 30px 90px;
 }
+
 
 .formCreateCourse .row:first-child {
   padding: 40px 30px;

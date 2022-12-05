@@ -53,11 +53,11 @@ const LecturerCourseList = () => {
                   key={course._id}
                 >
                   <div className="border-course courseCard">
-                    {/* <Link to={`/courses/${course._id}`}>
+                    <Link to={`/courses/${course._id}`}>
                       <div className="courseImage">
                         <img src={course.image} alt={course.name} />
                       </div>
-                    </Link> */}
+                    </Link>
 
                     <div className="coursetext">
                       <h3 className="coursename">
