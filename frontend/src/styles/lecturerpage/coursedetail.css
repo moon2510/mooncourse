@@ -16,13 +16,7 @@
   border-radius: 15px;
 }
 
-.buttonCreate {
-  align-items: center;
-  background-color: var(--primary);
-  border-radius: 50px;
-  padding: 7px 10px;
-  color: #fff;
-}
+
 .formCreateLesson .row {
   text-align: center;
   justify-content: center;
@@ -213,3 +207,4 @@
   right: 30px;
   letter-spacing: 1px;
 }
+
