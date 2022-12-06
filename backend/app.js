@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var courseRouter = require('./routes/coursesLecturer');
 var lessonRouter = require('./routes/lesson');
+var topicRouter = require('./routes/topic');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,10 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/lecturer', courseRouter);
 app.use('/lecturer', lessonRouter);
+app.use('/lecturer', topicRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

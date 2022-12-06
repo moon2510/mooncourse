@@ -1,25 +1,22 @@
-
 :root {
   --primary: #379c9c;
-  --lightGreen: #41B8B8;
-  --lightgreen:#99ddda;
+  --lightGreen: #41b8b8;
+  --lightgreen: #99ddda;
   --white: #ffffff;
   --greyLight-1: #e4ebf5;
   --greyLight-2: #c8d0e7;
   --greyLight-3: #bec8e4;
   --greyDark: #9baacf;
   --aicolorDark: #2b8888;
-  --aicolorLight: #D0E7E7;
-  --aicolor:#82a9a9;
-  --darkGreen:#1a6f6f;
-
+  --aicolorLight: #d0e7e7;
+  --aicolor: #82a9a9;
+  --darkGreen: #1a6f6f;
 }
 
-
-body{
+body {
   background: #74ebd5;
-  background: -webkit-linear-gradient(to right, #d1fff7, #dbe1ff); 
-  background: linear-gradient(to right, #e8fffa, #f1f4ff); 
+  background: -webkit-linear-gradient(to right, #d1fff7, #dbe1ff);
+  background: linear-gradient(to right, #e8fffa, #f1f4ff);
 }
 .App {
   text-align: center;
@@ -51,39 +48,48 @@ body{
   color: #61dafb;
 }
 
-button{
-  background: transparent;
+button {
+  background-color: var(--primary);
   border: 0;
   margin: 0;
-
-}
-
-/* Button Custom */
-.createButton{
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  background-color: var(--primary);
   border-radius: 50px;
-  padding: 7px 10px ;
-  width: 110px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  border-radius: 50px;
+  padding: 7px 10px;
+  color: rgb(255, 255, 255);
 }
-.wrap-createbutton{
+.createButton:hover {
+  background-color: var(--aicolorDark);
+  color: #fff;
+}
+.secondarybutton{
+  background-color: #ffffff !important; 
+  color: #1a6f6f !important;
+}
+/* Button Custom */
+.createButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+
+}
+.wrap-createbutton {
   display: flex;
   justify-content: flex-end;
   margin-right: 25px;
   margin-bottom: 15px;
 }
 
-.createButton p{
+.createButton p {
   color: #fff;
-  padding-right: 5px;
   font-weight: bold;
 }
-.iconCreate{
+.iconCreate {
   margin-right: 3px;
 }
-.createButton:hover{
+.createButton:hover {
   color: rgb(197, 196, 196);
 }
 @keyframes App-logo-spin {
@@ -98,7 +104,6 @@ button{
 a {
   text-decoration: none;
   color: var(--aicolorDark);
-  
 }
 a:hover {
   color: var(--darkGreen);
@@ -240,8 +245,6 @@ textarea:focus {
   object-fit: contain;
   margin-left: 20px;
 }
-
-
 
 .shoptext {
   padding-top: 10px;

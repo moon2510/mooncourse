@@ -79,7 +79,7 @@ const Header = () => {
             </div>
 
             <div className="logout">
-              <button onClick={logout}>
+              <button onClick={logout} className="logoutWrap">
                 <RiLogoutCircleRLine size={25} color={"#2b8888"} />
               </button>
             </div>

@@ -49,7 +49,14 @@ function Login() {
         localStorage.setItem("checkLogin", false);
       }
     console.log("ABCDEF", userLogin)
-    window.location.href = "/";
+    
+    if (localStorage.getItem("role")==="learner"){
+      console.log("Role",user.role)
+      window.location.href = "/";
+    }
+    else{
+      window.location.href = "/lecturer";
+    }
     } catch (err) {
       alert(err.response.data.msg);
     }

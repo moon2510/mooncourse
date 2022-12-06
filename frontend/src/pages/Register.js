@@ -71,13 +71,13 @@ function Register() {
             <label>Password</label>
           </div>
 
-          <Button type="submit" className="buttonLogin">
+          <button type="submit" className="buttonLogin">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             Register
-          </Button>
+          </button>
 
           <p id="signup">
             Have a account,{" "}

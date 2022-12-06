@@ -19,7 +19,7 @@ import {
   Divider,
 } from 'verbum';
 
-const NoteViewer = (props) => {
+const CreateTopic = (props) => {
 
   const onSubmit = ()=>{
     const editorLesson = document.querySelector('.ContentEditable__root').innerHTML
@@ -56,4 +56,4 @@ const NoteViewer = (props) => {
   );
 };
 
-export default React.memo(NoteViewer);
+export default React.memo(CreateTopic);

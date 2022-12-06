@@ -10,7 +10,7 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  width: 800px;
+  width: 750px;
   display: flex;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.044) 0px 30px 90px;
@@ -92,8 +92,4 @@ input[type="text"]:-ms-input-placeholder {
   color: #1a6f6f;
   font-size: 14px;
   border: #0c9999 2px solid;
-}
-.buttonCreate{
-  width: 150px;
-  
 }

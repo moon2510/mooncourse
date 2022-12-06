@@ -3,22 +3,29 @@ import { Link } from "react-router-dom";
 import "../../styles/lecturerpage/createcourse.css";
 import "../../styles/lecturerpage/coursedetail.css";
 import axios from "axios";
-
-import Popup from "reactjs-popup";
+import { useDispatch } from "react-redux";
+import Modal from "react-bootstrap/Modal";
 
 import { AiFillPlusCircle } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
 import { BiTimeFive } from "react-icons/bi";
 import { VscBook } from "react-icons/vsc";
 
+//Redux
 import { useSelector } from "react-redux";
 import { selectCourse } from "../.././redux/slices/courseSlice";
+import { updateLessonDetail } from "../.././redux/slices/lessonSlice";
 
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const CourseDetail = () => {
   const course = useSelector(selectCourse);
+  const dispatch = useDispatch();
 
   const [lessonList, setLessonList] = useState("");
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const fetchData = async () => {
     const result = await axios.get(
@@ -62,7 +69,10 @@ const CourseDetail = () => {
       alert(err.response.data.msg);
     }
   };
-  let a = course.rating + ",100";
+
+  const reduxLessonDetail = (lesson) => {
+    dispatch(updateLessonDetail(lesson));
+  };
 
   return (
     <div className="courseDetail">
@@ -71,11 +81,6 @@ const CourseDetail = () => {
           <div class="course-preview">
             <h6>Course</h6>
             <h2>{course.name}</h2>
-            {/* <a href="#">
-                  View all chapters <i class="fas fa-chevron-right"></i>
-                </a> */}
-
-            <button class="btn">Continue</button>
 
             <div className="infoCourse">
               <div className="itemInfo">
@@ -98,63 +103,70 @@ const CourseDetail = () => {
       </div>
 
       <Link to={"/lecturer/createcourse"} className="wrap-createbutton"></Link>
-      <Popup
-        modal
-        trigger={
-          <div className="wrap-createbutton">
-            <div className="createButton courseCreateButton">
-              <div className="iconCreate">
-                <AiFillPlusCircle size={28} color={"#fff"} />
-              </div>
-              <p> Create</p>
-            </div>
-          </div>
-        }
-      >
-        <form
-          onSubmit={createLessonSubmit}
-          className="formCreateCourse formCreateLesson"
+      <div className="wrap-createbutton">
+        <button
+          onClick={handleShow}
+          className="createButton courseCreateButton"
         >
-          <div className="row">
-            <div className="courseInput">
-              <span>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  placeholder=""
-                  value={lesson.name}
-                  onChange={onChangeInput}
-                  className="inputtext"
-                />
-                <label className="field" for="Name">
-                  Name
-                </label>
-              </span>
-            </div>
-            <div className="courseInput">
-              <span>
-                <input
-                  type="text"
-                  name="description"
-                  required
-                  placeholder=""
-                  value={lesson.description}
-                  onChange={onChangeInput}
-                  className="inputtext"
-                />
-                <label className="field" for="Description">
-                  Description
-                </label>
-              </span>
-            </div>
-
-            <button type="submit" className="buttonCreate">
-              Create Lesson
-            </button>
+          <div className="iconCreate">
+            <AiFillPlusCircle size={28} color={"#fff"} />
           </div>
-        </form>
-      </Popup>
+          <p>Lesson</p>
+        </button>
+      </div>
+      <Modal show={show} onHide={handleClose} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Create Lesson</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form
+            onSubmit={createLessonSubmit}
+            className="formCreateCourse formCreateLesson"
+          >
+            <div className="row">
+              <div className="courseInput">
+                <span>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder=""
+                    value={lesson.name}
+                    onChange={onChangeInput}
+                    className="inputtext"
+                  />
+                  <label className="field" for="Name">
+                    Name
+                  </label>
+                </span>
+              </div>
+              <div className="courseInput">
+                <span>
+                  <input
+                    type="text"
+                    name="description"
+                    required
+                    placeholder=""
+                    value={lesson.description}
+                    onChange={onChangeInput}
+                    className="inputtext"
+                  />
+                  <label className="field" for="Description">
+                    Description
+                  </label>
+                </span>
+              </div>
+            </div>
+            <Modal.Footer>
+              <button className="secondarybutton" onClick={handleClose}>
+                Close
+              </button>
+              <button type="submit">Create Lesson</button>
+            </Modal.Footer>
+          </form>
+        </Modal.Body>
+      </Modal>
+
       <div className="coursecontainer row">
         {lessonList.map((lesson) => (
           <div
@@ -171,7 +183,14 @@ const CourseDetail = () => {
                 <p>Difficulty: {course.level}</p>
               </div>
               <hr />
-              <div className="wrapButtonLearnNow">ABCD</div>
+              <Link to={`/lecturer/lesson/${lesson._id}`}>
+                <button
+                  onClick={() => reduxLessonDetail(lesson)}
+                  className="buttonLearnNow"
+                >
+                  Detail
+                </button>
+              </Link>
             </div>
           </div>
         ))}

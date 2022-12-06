@@ -195,4 +195,8 @@ label #cancel {
 .logoutLecture{
   text-align: center;
   margin-top: 50px;
+
+}
+.logoutLecture button{
+  background-color: #fff;
 }

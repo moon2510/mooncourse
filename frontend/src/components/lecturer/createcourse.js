@@ -20,10 +20,8 @@ const CreateCourse = () => {
     authorId: localStorage.getItem("id"),
     image: "",
   });
-  console.log(course);
 
   //image firebase
-
   const uploadImage = async (file, name) => {
     try {
       if (!file) return null;

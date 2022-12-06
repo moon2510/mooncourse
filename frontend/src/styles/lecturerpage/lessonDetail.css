@@ -1,0 +1,14 @@
+.toolbar{
+    height: 55px !important;
+  }
+  .toolbar button{
+    box-shadow: none;
+  
+  }
+  .modal-backdrop{
+    z-index: 0 !important;
+  }
+  .modal{
+    z-index: 1 !important;
+  }
+  

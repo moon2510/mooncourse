@@ -36,12 +36,12 @@ const LecturerCourseList = () => {
   return (
     <div className="container">
       <Link to={"/lecturer/createcourse"} className="wrap-createbutton">
-        <div className="createButton courseCreateButton">
+        <button className="createButton courseCreateButton">
           <div className="iconCreate">
             <AiFillPlusCircle size={28} color={"#fff"} />
           </div>
-          <p> Create</p>
-        </div>
+          <p> Course</p>
+        </button>
       </Link>
       <div className="section">
         <div className="row">

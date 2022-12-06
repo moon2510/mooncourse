@@ -8,6 +8,7 @@ import About from "./pages/About";
 import LecturerCoursePage from "./pages/LecturePage/LectureCoursePage";
 import LecturerCreateCourse from "./pages/LecturePage/LectureCreateCourse";
 import LecturerCourseDetail from "./pages/LecturePage/LecturerCourseDetail";
+import LecturerLessonDetail from "./pages/LecturePage/LecturerLessonDetail";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/lecturer" element={<LecturerCoursePage />} />
           <Route path="/lecturer/createcourse" element={<LecturerCreateCourse />} />
           <Route path="/lecturer/course/:courseId" element={<LecturerCourseDetail />} />
+          <Route path="/lecturer/lesson/:lessonId" element={<LecturerLessonDetail/>} />
         </Routes>
       </BrowserRouter>
   );
