@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import "../styles/login.css";
-import { GoogleLogin } from "react-google-login";
-import { FcGoogle } from "react-icons/fc";
 
-const clientID =
-  "463573475496-rnvq84ltmnm5ffmpk1786pbl2as1v2j0.apps.googleusercontent.com";
+import FacebookLogin from '@greatsumini/react-facebook-login';
 
 function Login() {
   const [user, setUser] = useState({
@@ -21,46 +18,60 @@ function Login() {
     setUser({ ...user, [name]: value });
   };
 
-  //Login Google
-  const onSuccess = (res) => {
-    // onChangeInput(res.email)
-    // loginSubmit();
-    console.log("Login successfully! Current user: ", res.profileObj.name);
-    window.location.href = "/";
-  };
-
-  const onFailure = (res) => {
-    console.log("Login Fail! res: ", res);
-  };
 
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userLogin=await axios.post("/user/login", { ...user });
-      if (userLogin.data.user){
+      const userLogin = await axios.post("/user/login", { ...user });
+      if (userLogin.data.user) {
         localStorage.setItem("checkLogin", true);
         localStorage.setItem("user", userLogin.data.user);
         localStorage.setItem("name", userLogin.data.user.name);
         localStorage.setItem("email", userLogin.data.user.email);
         localStorage.setItem("role", userLogin.data.user.role);
         localStorage.setItem("id", userLogin.data.user._id);
-      }
-      else{
+      } else {
         localStorage.setItem("checkLogin", false);
       }
-    console.log("ABCDEF", userLogin)
-    
-    if (localStorage.getItem("role")==="learner"){
-      console.log("Role",user.role)
-      window.location.href = "/";
-    }
-    else{
-      window.location.href = "/lecturer";
-    }
+      console.log("ABCDEF", userLogin);
+
+      if (localStorage.getItem("role") === "learner") {
+        console.log("Role", user.role);
+        window.location.href = "/";
+      } else {
+        window.location.href = "/lecturer";
+      }
     } catch (err) {
       alert(err.response.data.msg);
     }
   };
+
+  const loginWithFacebook = async (response) => {
+    try {
+      const facebookLogin = await axios.post("/user/loginFacebook", { ...response });
+      console.log(facebookLogin);
+      if (facebookLogin.data.user) {
+        localStorage.setItem("checkLogin", true);
+        localStorage.setItem("user", facebookLogin.data.user);
+        localStorage.setItem("name", facebookLogin.data.user.name);
+        localStorage.setItem("email", facebookLogin.data.user.email);
+        localStorage.setItem("role", facebookLogin.data.user.role);
+        localStorage.setItem("id", facebookLogin.data.user._id);
+      } else {
+        localStorage.setItem("checkLogin", false);
+      }
+      console.log("ABCDEF", facebookLogin);
+
+      if (localStorage.getItem("role") === "learner") {
+        console.log("Role", user.role);
+        window.location.href = "/";
+      } else {
+        window.location.href = "/lecturer";
+      }
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  }
 
   return (
     <div className="loginPage">
@@ -90,7 +101,6 @@ function Login() {
             <label>Password</label>
           </div>
 
-
           <Button type="submit" className="buttonLogin">
             <span></span>
             <span></span>
@@ -119,21 +129,15 @@ function Login() {
           </div>
         </div>
         <div className="social">
-          <div className="googleLogin">
-            <GoogleLogin
-              clientId={clientID}
-              buttonText={null}
-              onSuccess={onSuccess}
-              onFailure={onFailure}
-              cookiePolicy={"single_host_origin"}
-              isSignedIn={true}
-              render={(renderProps) => (
-                <button onClick={renderProps.onClick} className="googleButton">
-                  <FcGoogle />
-                </button>
-              )}
-            />
-          </div>
+          <div className="facebooklogin">
+              <FacebookLogin
+                appId="621744609751436"
+                onFail={(error) => {
+                  console.log('Login Failed!', error);
+                }}
+                onProfileSuccess={(response) => loginWithFacebook(response)}
+              />
+            </div>
         </div>
       </div>
     </div>

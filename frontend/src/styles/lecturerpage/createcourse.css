@@ -1,6 +1,5 @@
 .createCourse{
     text-align: center;
-    margin-top: 100px;
 }
 
 
@@ -51,6 +50,7 @@ input[type="text"]:-ms-input-placeholder {
   transition: all .3s ease-in-out;
   border-radius: 15px;
   border: #0c9999 2px solid;
+  margin-right: -70px;
 }
 .inputtext label {
   display: inline-block;
@@ -83,13 +83,53 @@ input[type="text"]:-ms-input-placeholder {
 }
 .field{
   position: absolute;
-  margin-right: 530px;
+  margin-right: 470px;
   width: 120px;
-  background-color:#eeffff ;
+  background-color:#e3f8f8 ;
   border-radius: 15px;
   padding: 5px 10px;
   text-align: center;
   color: #1a6f6f;
   font-size: 14px;
   border: #0c9999 2px solid;
+}
+
+.custom-file-input {
+  color: transparent;
+  padding: 40px;
+  margin-left: -20px ;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: 'Upload Image';
+  color: var(--aicolorDark);
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #ffffff, #e3f8f8);
+  border-radius: 15px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  padding: 10px;
+
+}
+/* .custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active {
+  outline: 0;
+} */
+
+.iconUpload{
+  margin-left: 100px ;
+}
+.buttonCreateCourse{
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
 }

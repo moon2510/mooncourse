@@ -75,12 +75,6 @@ const userControllers = {
      });
 
 
-     store.set('userID',user._id )
-     console.log("hahahah",store);
-     console.log("hahahah",store.get('userID'));
-
-
-
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
@@ -104,6 +98,51 @@ const userControllers = {
       return res.status(500).json({ msg: err.message });
     }
   },
+
+  //FACEBOOK
+  loginFacebook: async (req, res) => {
+    try{
+      const { name, email } = req.body;
+
+      const user = await Users.findOne({ email });
+      if (user) {
+         // Login 
+          const accesstoken = createAccessToken({ id: user._id });
+          res.cookie("accesstoken", accesstoken, {
+            httpOnly: true,
+            path: "/user/accesstoken",
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7d
+          });
+          
+          res.json({ 
+            token:accesstoken,
+            user: user
+        });
+      }
+      
+      if (!user){
+        const newUser = new Users({
+          name,
+          email,
+          social: 'facebook'
+        });
+        await newUser.save({ validateBeforeSave: false });
+
+        // Then create jsonwebtoken to authentication
+        const accesstoken = createAccessToken({ id: newUser._id });
+
+        res.cookie("accesstoken", accesstoken, {
+          httpOnly: true,
+          path: "/user/accesstoken",
+          maxAge: 7 * 24 * 60 * 60 * 1000, // 7d
+        });
+
+        res.json({ accesstoken });
+        }
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  }
 };
 
 const createAccessToken = (user) => {

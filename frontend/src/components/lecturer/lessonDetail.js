@@ -44,7 +44,6 @@ const CourseDetail = () => {
   const [topicList, setTopicList] = useState("");
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -123,6 +122,7 @@ const CourseDetail = () => {
         </div>
       </div>
       <div className="wrap-createbutton">
+        <h1>Topic</h1>
         <button
           onClick={handleShow}
           className="createButton courseCreateButton"
@@ -144,18 +144,16 @@ const CourseDetail = () => {
             className="formCreateCourse formCreateLesson"
           >
             <div className="nameTopicInput">
-              <span>
-                <div className="name">Name</div>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  placeholder=""
-                  value={topic.name}
-                  onChange={onChangeInput}
-                  className="inputtext"
-                />
-              </span>
+              <div className="name">Name</div>
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder=""
+                value={topic.name}
+                onChange={onChangeInput}
+                className="inputtext"
+              />
             </div>
             <EditorComposer>
               <Editor
@@ -193,9 +191,7 @@ const CourseDetail = () => {
               <button className="secondarybutton" onClick={handleClose}>
                 Close
               </button>
-              <button type="submit">
-                Create Topic
-              </button>
+              <button type="submit">Create Topic</button>
             </Modal.Footer>
           </form>
         </Modal.Body>

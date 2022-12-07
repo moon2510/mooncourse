@@ -3,20 +3,38 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 const cors = require("cors");
 const mongoose = require("mongoose");
 const isLoggedIn = require('../backend/middleware/auth')
-
+const passport = require('passport');
 const app = express();
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+
+
+passport.use(new GoogleStrategy({
+    clientID:     "463573475496-rnvq84ltmnm5ffmpk1786pbl2as1v2j0.apps.googleusercontent.com",
+    clientSecret: "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",
+    callbackURL: "/auth/google/callback",
+    passReqToCallback   : true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var courseRouter = require('./routes/coursesLecturer');
 var lessonRouter = require('./routes/lesson');
 var topicRouter = require('./routes/topic');
+const { config } = require('process');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -73,6 +91,20 @@ mongoose.connect(
 // app.listen(PORT, () => {
 //   console.log("Server is running on port", PORT);
 // });
+
+
+
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope:
+      [ 'email', 'profile' ] }
+));
+
+app.get('/auth/google/callback',
+    passport.authenticate( 'google', {
+        successRedirect: '/auth/google/success',
+        failureRedirect: '/auth/google/failure'
+}));
 
 
 module.exports = app;

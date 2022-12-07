@@ -4,7 +4,7 @@ import "../../styles/lecturerpage/createcourse.css";
 import axios from "axios";
 import { storage } from "../../../src/firebase";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { MdEmail } from "react-icons/md";
+import { ImUpload3 } from "react-icons/im";
 import { ImLocation2 } from "react-icons/im";
 import { AiFillPhone, AiFillLinkedin } from "react-icons/ai";
 import { BsFacebook, BsGithub, BsYoutube } from "react-icons/bs";
@@ -51,10 +51,6 @@ const CreateCourse = () => {
       await axios.post("http://localhost:5000/lecturer/createCourse", {
         ...course,
       });
-
-      //   localStorage.setItem("checkLogin", true);
-
-      window.location.href = "/lecture";
     } catch (err) {
       alert(err.response.data.msg);
     }
@@ -128,18 +124,27 @@ const CreateCourse = () => {
             </span>
           </div>
 
-          <div className="uploadImage">
+          <div className="courseInput">
+            <div className="iconUpload">
+              <ImUpload3 size={25} color="379c9c" />
+            </div>
             <input
               name="image"
               onChange={onChangeInput}
               type="file"
               accept="image/*"
+              className="custom-file-input"
             />
-          </div>
 
-          <button type="submit" className="buttonCreate">
-            Create Course
-          </button>
+            <label className="field" for="Image">
+              Image
+            </label>
+          </div>
+          <div className="wrap-createbutton">
+            <button type="submit" className="courseCreateButton">
+              <p> Create Course</p>
+            </button>
+          </div>
         </div>
       </form>
     </div>

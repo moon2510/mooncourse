@@ -11,4 +11,12 @@
   .modal{
     z-index: 1 !important;
   }
-  
+
+  .nameTopicInput{
+    display: flex;
+    align-items: center;
+  }
+  .nameTopicInput input {
+    width: 90%;
+    margin-left: 20px;
+  }

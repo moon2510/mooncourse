@@ -4,15 +4,21 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { AiFillPlusCircle } from "react-icons/ai";
 import Rating from "../home/rating";
 import axios from "axios";
-import "../../styles/lecturerpage/lecturerpage.css"
+import "../../styles/lecturerpage/lecturerpage.css";
 import { useDispatch } from "react-redux";
 import { updateCourseDetail } from "../.././redux/slices/courseSlice";
 
+import Modal from "react-bootstrap/Modal";
+import CreateCourse from "../../components/lecturer/createcourse";
 
 const LecturerCourseList = () => {
   const [courses, setCourses] = useState("");
   const authorId = localStorage.getItem("id");
   const dispatch = useDispatch();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const fetchData = async () => {
     const result = await axios.get(
@@ -31,18 +37,32 @@ const LecturerCourseList = () => {
 
   const reduxCourseDetail = (course) => {
     dispatch(updateCourseDetail(course));
-  }
+  };
 
   return (
     <div className="container">
-      <Link to={"/lecturer/createcourse"} className="wrap-createbutton">
-        <button className="createButton courseCreateButton">
+      <div className="wrap-createbutton">
+        <h2>Topic</h2>
+        <button
+          onClick={handleShow}
+          className="createButton courseCreateButton"
+        >
           <div className="iconCreate">
             <AiFillPlusCircle size={28} color={"#fff"} />
           </div>
           <p> Course</p>
         </button>
-      </Link>
+      </div>
+
+      <Modal show={show} onHide={handleClose} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Create Topic</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <CreateCourse />
+        </Modal.Body>
+      </Modal>
+
       <div className="section">
         <div className="row">
           <div className="col-lg-12 col-md-12 article">
@@ -84,7 +104,12 @@ const LecturerCourseList = () => {
                         )}
                       </div>
                       <Link to={`/lecturer/course/${course._id}`}>
-                        <button onClick={()=>reduxCourseDetail(course)} className="buttonLearnNow">Detail</button>
+                        <button
+                          onClick={() => reduxCourseDetail(course)}
+                          className="buttonLearnNow"
+                        >
+                          Detail
+                        </button>
                       </Link>
                     </div>
                   </div>

@@ -15,6 +15,8 @@ router.post('/register', userCtrl.register)
 
 router.post('/login', userCtrl.login)
 
+router.post('/loginFacebook', userCtrl.loginFacebook)
+
 router.get('/logout', userCtrl.logout)
 
 
