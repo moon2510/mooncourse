@@ -24,6 +24,7 @@ const User = new mongoose.Schema(
 		enum: ['learner', 'lecturer', 'admin'],
 		default: 'learner',
 	  },
+	
   },
   { collection: "user-data" }
 );
