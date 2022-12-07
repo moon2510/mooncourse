@@ -102,8 +102,8 @@ const CourseDetail = () => {
         </div>
       </div>
 
-      <Link to={"/lecturer/createcourse"} className="wrap-createbutton"></Link>
       <div className="wrap-createbutton">
+        <div className="pageName">Lessons</div>
         <button
           onClick={handleShow}
           className="createButton courseCreateButton"
@@ -176,6 +176,7 @@ const CourseDetail = () => {
             <div className="border-course courseCard">
               <div className="coursetext">
                 <h3 className="coursename">
+                  <VscBook size={25} />
                   <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
                 </h3>
 

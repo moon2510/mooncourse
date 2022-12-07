@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../components/header";
-import CourseSection from "../components/home/coursesection";
-import Footer from "../components/footer";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import AllCourse from "../../components/learner/allcourseHome";
 // import Footer from "./../components/Footer";
 
 const HomePage = () => {
@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <div>
       <Header />
-      <CourseSection/>
+      <AllCourse/>
       <Footer/>
       
     </div>

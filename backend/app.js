@@ -32,6 +32,7 @@ passport.use(new GoogleStrategy({
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var courseRouter = require('./routes/coursesLecturer');
+var courseLearnerRouter = require('./routes/courseLearner');
 var lessonRouter = require('./routes/lesson');
 var topicRouter = require('./routes/topic');
 const { config } = require('process');
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
+app.use('/user', courseLearnerRouter);
 app.use('/lecturer', courseRouter);
 app.use('/lecturer', lessonRouter);
 app.use('/lecturer', topicRouter);
@@ -92,19 +94,6 @@ mongoose.connect(
 //   console.log("Server is running on port", PORT);
 // });
 
-
-
-
-app.get('/auth/google',
-  passport.authenticate('google', { scope:
-      [ 'email', 'profile' ] }
-));
-
-app.get('/auth/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/auth/google/success',
-        failureRedirect: '/auth/google/failure'
-}));
 
 
 module.exports = app;

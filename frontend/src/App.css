@@ -63,8 +63,8 @@ button {
   background-color: var(--aicolorDark);
   color: #fff;
 }
-.secondarybutton{
-  background-color: #ffffff !important; 
+.secondarybutton {
+  background-color: #ffffff !important;
   color: #1a6f6f !important;
 }
 /* Button Custom */
@@ -73,23 +73,24 @@ button {
   justify-content: center;
   align-items: center;
   width: 110px;
-
+  margin-right: 10px;
 }
 .wrap-createbutton {
   display: flex;
   justify-content: flex-end;
-  margin-right: 25px;
-  margin-bottom: 15px;
+  align-items: center;
+  margin: 0px 30px 10px 15px;
   background-color: #fff;
-  padding: 10px 5px;
-  border-radius: 25px;
-
+  padding: 10px 0px;
+  border-radius: 35px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.wrap-createbutton h1{
+.pageName {
   margin-right: 1000px;
-  color: #1a6f6f !important;
-  font-family: 'Courier New', Courier, monospace;
-  
+  color: #257d7d !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .createButton p {
@@ -218,9 +219,7 @@ textarea:focus {
 }
 .Login p a {
   color: #7a7a7a;
-
-
 }
-.modal-title h4{
+.modal-title h4 {
   color: "red" !important;
 }
