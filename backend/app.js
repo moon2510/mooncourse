@@ -35,6 +35,7 @@ var courseRouter = require('./routes/coursesLecturer');
 var courseLearnerRouter = require('./routes/courseLearner');
 var lessonRouter = require('./routes/lesson');
 var topicRouter = require('./routes/topic');
+var transactionRouter = require('./routes/transaction');
 const { config } = require('process');
 
 // view engine setup
@@ -55,6 +56,7 @@ app.use('/user', courseLearnerRouter);
 app.use('/lecturer', courseRouter);
 app.use('/lecturer', lessonRouter);
 app.use('/lecturer', topicRouter);
+app.use('/transaction', transactionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

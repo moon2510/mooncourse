@@ -8,10 +8,33 @@ import "../../styles/lecturerpage/lecturerpage.css";
 import { useDispatch } from "react-redux";
 import { updateCourseDetail } from "../.././redux/slices/courseSlice";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const AllCourse = () => {
   const [courses, setCourses] = useState("");
   const authorId = localStorage.getItem("id");
   const dispatch = useDispatch();
+
+
+
+
+  const joinCourseSubmit = async (courseLearn) => {
+    const transaction = {
+      courseId: courseLearn._id,
+      userId: localStorage.getItem("id"),
+    };
+    console.log("Trans",transaction);
+    reduxCourseDetail(courseLearn);
+    try {
+      await axios.post("http://localhost:5000/transaction/createTransaction", {
+        ...transaction,
+      });
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
+
 
   const fetchData = async () => {
     const result = await axios.get(
@@ -22,7 +45,10 @@ const AllCourse = () => {
 
   useEffect(() => {
     fetchData();
+    AOS.init();
   }, []);
+
+
 
   if (courses === "") {
     return <div></div>;
@@ -42,6 +68,8 @@ const AllCourse = () => {
                 <div
                   className="coursegrid col-lg-4 col-md-6 col-sm-6"
                   key={course._id}
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
                 >
                   <div className="border-course courseCard">
                     <Link to={`/courses/${course._id}`}>
@@ -74,9 +102,9 @@ const AllCourse = () => {
                           </div>
                         )}
                       </div>
-                      <Link to={`/learner/course/${course._id}`}>
+                      <Link to={`learner/course/${course._id}`}>
                         <button
-                          onClick={() => reduxCourseDetail(course)}
+                          onClick={() => {joinCourseSubmit(course)}}
                           className="buttonLearnNow"
                         >
                           Learn Now
