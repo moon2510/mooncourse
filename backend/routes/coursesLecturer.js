@@ -7,7 +7,7 @@ const auth = require('../middleware/auth')
 
 router.post('/createCourse', courseControllers.createCourse)
 router.get('/myCourse/:authorId', courseControllers.getCourse)
-
+// router.put('/myCourse/:courseId', courseControllers.updateLessonNumber)
 // router.get('/infor', auth,  userCtrl.getUser)
 
 // router.get('/history', auth, userCtrl.history)

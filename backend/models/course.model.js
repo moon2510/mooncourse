@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
 
+const mongoose = require("mongoose");
+const TopicModel = require("./topic.model");
 const courseSchema = new mongoose.Schema(
   {
     name: {
@@ -9,8 +10,7 @@ const courseSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, "Please provide description for course"],
-      maxlength: 200,
+      required: [true, "Please provide description for course"]
     },
     level: {
       type: String,
@@ -44,8 +44,12 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: [true],
     },
+    category: {
+      type: String,
+      required: [true],
+    },
 
-    lessonArray: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Lesson'}],
+    topicArray: [{ type: mongoose.Schema.Types.ObjectId, ref: TopicModel}],
 
   },
   { timestamps: true }

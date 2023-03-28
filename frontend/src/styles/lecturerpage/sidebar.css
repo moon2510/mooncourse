@@ -200,3 +200,6 @@ label #cancel {
 .logoutLecture button{
   background-color: #fff;
 }
+.quizTittle{
+  margin-left: 8px;
+}

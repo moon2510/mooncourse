@@ -54,10 +54,14 @@ const Header = () => {
         </div>
         <div className="wrapper">
           <nav className="nav nav1">
-            
-           
-            <Link to="/course" className="nav-item" data-color="#D82148">
-              Course
+            <Link to="/course" className="nav-item active" data-color="#D82148">
+              Home
+            </Link>
+            <Link to="#" className="nav-item" data-color="#FFB72B">
+              My Course
+            </Link>
+            <Link to="#" className="nav-item" data-color="#1C0A00">
+              About
             </Link>
             <Link to="#" className="nav-item" data-color="#FFB72B">
               Blog

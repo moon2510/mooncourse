@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "../../styles/lecturerpage/createcourse.css";
 import axios from "axios";
 import { storage } from "../../../src/firebase";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { ImUpload3 } from "react-icons/im";
-import { ImLocation2 } from "react-icons/im";
-import { AiFillPhone, AiFillLinkedin } from "react-icons/ai";
-import { BsFacebook, BsGithub, BsYoutube } from "react-icons/bs";
-import { async } from "@firebase/util";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const CreateCourse = () => {
@@ -20,13 +18,22 @@ const CreateCourse = () => {
     authorId: localStorage.getItem("id"),
     image: "",
   });
-
+  const notify = () =>
+    toast.success("Create Course Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   //image firebase
   const uploadImage = async (file, name) => {
     try {
       if (!file) return null;
       const storageRef = ref(storage, `${file.name}`);
-
       uploadBytes(storageRef, file).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((downloadURL) => {
           setCourse({ ...course, [name]: downloadURL });
@@ -51,12 +58,27 @@ const CreateCourse = () => {
       await axios.post("http://localhost:5000/lecturer/createCourse", {
         ...course,
       });
+      notify();
     } catch (err) {
       alert(err.response.data.msg);
     }
   };
   return (
     <div className="createCourse">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
       <form onSubmit={createCourseSubmit} className="formCreateCourse">
         <div className="row">
           <div className="courseInput">
@@ -140,7 +162,7 @@ const CreateCourse = () => {
               Image
             </label>
           </div>
-          <div className="wrap-createbutton">
+          <div className="">
             <button type="submit" className="courseCreateButton">
               <p> Create Course</p>
             </button>

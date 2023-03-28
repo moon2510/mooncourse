@@ -1,7 +1,6 @@
 .courseDetail {
   padding: 100px;
   margin: 0 auto;
-  
 }
 .courseName {
   display: flex;
@@ -16,10 +15,37 @@
   border-radius: 15px;
 }
 
-
-.formCreateLesson .row {
+/* .formCreateLesson .row {
   text-align: center;
   justify-content: center;
+} */
+.description {
+  text-align: justify;
+  line-height: 25px;
+}
+.descriptionWrap p {
+  color: var(--aicolorDark);
+  font-size: 30px;
+  font-weight: bold;
+}
+.descriptionWrap {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: #fff;
+  margin: 20px 25px 20px 15px;
+  padding: 30px;
+  border-radius: 15px;
+}
+.bannerCourse{
+  display: flex;
+  justify-content: center;
+}
+.imgCourse img{
+  width: 360px;
+  height: fit-content;
+}
+.descriptionFlex {
+  text-align: center;
+  padding: 10px;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
@@ -43,15 +69,15 @@
   font-weight: bold;
   letter-spacing: 1px;
 }
-.banner {
+/* .banner {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
   margin: 0;
-}
-
+} */
+/* 
 .course {
   background-color: white;
   border-radius: 10px;
@@ -61,7 +87,7 @@
   margin: 20px;
   overflow: hidden;
   width: 96%;
-}
+} */
 
 .course h6 {
   opacity: 0.6;
@@ -82,19 +108,17 @@
   min-width: 600px;
 }
 
-.course-preview a {
+/* .course-preview a {
   color: #fff;
   display: inline-block;
   font-size: 12px;
   opacity: 0.6;
   margin-top: 30px;
   text-decoration: none;
-}
+} */
 
 .course-info {
   padding: 30px;
-  position: relative;
-  width: 100%;
 }
 
 .btn {
@@ -118,43 +142,6 @@
   .floating-btn {
     right: 10px;
   }
-}
-
-.flex-wrapper {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.single-chart {
-  width: 100%;
-  justify-content: space-around;
-}
-
-.circular-chart {
-  display: block;
-  margin: 10px auto;
-  max-width: 80%;
-  max-height: 250px;
-}
-
-.circle-bg {
-  fill: none;
-  stroke: #eee;
-  stroke-width: 3.8;
-}
-
-.itemInfo {
-  display: flex;
-  justify-content: center;
-}
-.itemInfo p {
-  padding-left: 5px;
-}
-
-.infoCourse {
-  display: grid;
-  grid-template-columns: 30% 30% 30%;
-  padding-top: 30px;
 }
 
 /* DropList detail lesson */
@@ -207,4 +194,7 @@
   right: 30px;
   letter-spacing: 1px;
 }
-
+.editButton{
+  background-color: #fff;
+  margin-left: 15px;
+}

@@ -6,12 +6,13 @@ const topicSchema = new mongoose.Schema({
         required: true,
         maxlength: 80
     },
-    knowledge:{
+    description:{
         type: String
     },
-    lessonId:{
+    courseId:{
         type: String
-    }
+    },
+    lessonArray: [{ type: mongoose.Schema.Types.ObjectId, ref: Lesson}],
 
 },
     { timestamps: true }

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import "../styles/login.css";
-
-import FacebookLogin from '@greatsumini/react-facebook-login';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from "@greatsumini/react-facebook-login";
 
 function Login() {
   const [user, setUser] = useState({
@@ -17,7 +17,6 @@ function Login() {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
-
 
   const loginSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +47,9 @@ function Login() {
 
   const loginWithFacebook = async (response) => {
     try {
-      const facebookLogin = await axios.post("/user/loginFacebook", { ...response });
+      const facebookLogin = await axios.post("/user/loginFacebook", {
+        ...response,
+      });
       console.log(facebookLogin);
       if (facebookLogin.data.user) {
         localStorage.setItem("checkLogin", true);
@@ -71,7 +72,7 @@ function Login() {
     } catch (err) {
       alert(err.response.data.msg);
     }
-  }
+  };
 
   return (
     <div className="loginPage">
@@ -130,15 +131,29 @@ function Login() {
         </div>
         <div className="social">
           <div className="facebooklogin">
-              <FacebookLogin
-                appId="621744609751436"
-                onFail={(error) => {
-                  console.log('Login Failed!', error);
-                }}
-                onProfileSuccess={(response) => loginWithFacebook(response)}
-              />
-            </div>
+            <FacebookLogin
+              appId="621744609751436"
+              onFail={(error) => {
+                console.log("Login Failed!", error);
+              }}
+              onProfileSuccess={(response) => loginWithFacebook(response)}
+            />
+          </div>
+          
         </div>
+        <div className="social">
+        <div className="facebooklogin">
+            <GoogleLogin
+              // appId="621744609751436"
+              // onFail={(error) => {
+              //   console.log("Login Failed!", error);
+              // }}
+              // onProfileSuccess={(response) => loginWithFacebook(response)}
+            />
+          </div>
+          
+        </div>
+        
       </div>
     </div>
   );

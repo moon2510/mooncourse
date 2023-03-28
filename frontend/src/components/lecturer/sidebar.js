@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/lecturerpage/sidebar.css";
 import { FaUserAlt } from "react-icons/fa";
-import { VscBook } from "react-icons/vsc";
+import { MdQuiz } from "react-icons/md";
 import { RiLogoutCircleRLine } from "react-icons/ri";
+
 
 const SideBar = ({ mycourse, createcourse, dashboard }) => {
   const logout = () => {
@@ -52,8 +53,8 @@ const SideBar = ({ mycourse, createcourse, dashboard }) => {
           to="/quiz"
           className={({ isActive }) => (isActive ? "active" : "inactive")}
         >
-          <i className="fas fa-qrcode"></i>
-          <span>Quiz</span>
+          <MdQuiz size={25}/>
+          <span className="quizTittle"> Quiz</span>
         </Link>
 
 

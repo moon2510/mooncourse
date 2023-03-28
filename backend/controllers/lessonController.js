@@ -1,4 +1,4 @@
-const Lesson = require("../models/lesson.model");
+const Lesson = require("../models/topic.model");
 require("dotenv").config();
 
 const lessonControllers = {

@@ -8,6 +8,10 @@ import "../../styles/lecturerpage/lecturerpage.css";
 import { useDispatch } from "react-redux";
 import { updateCourseDetail } from "../.././redux/slices/courseSlice";
 
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 import Modal from "react-bootstrap/Modal";
 import CreateCourse from "../../components/lecturer/createcourse";
 
@@ -19,6 +23,8 @@ const LecturerCourseList = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const notify = () => toast("Wow so easy !");
 
   const fetchData = async () => {
     const result = await axios.get(
@@ -42,7 +48,7 @@ const LecturerCourseList = () => {
   return (
     <div className="container">
       <div className="wrap-createbutton">
-        <h2>Topic</h2>
+      <div className="pageName">Course</div>
         <button
           onClick={handleShow}
           className="createButton courseCreateButton"
@@ -56,7 +62,7 @@ const LecturerCourseList = () => {
 
       <Modal show={show} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>
-          <Modal.Title>Create Topic</Modal.Title>
+          <Modal.Title>Create Course</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <CreateCourse />

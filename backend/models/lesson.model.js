@@ -6,10 +6,10 @@ const lessonSchema = new mongoose.Schema({
         required: true,
         maxlength: 80
     },
-    description:{
+    knowledge:{
         type: String
     },
-    courseId:{
+    topicId:{
         type: String
     }
 

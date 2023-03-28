@@ -5,11 +5,13 @@ import "../../styles/lecturerpage/coursedetail.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Modal from "react-bootstrap/Modal";
+import Rating from "../home/rating";
 
 import { AiFillPlusCircle } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
-import { BiTimeFive } from "react-icons/bi";
+import { RiFileEditFill } from "react-icons/ri";
 import { VscBook } from "react-icons/vsc";
+import { BiTime } from "react-icons/bi";
 
 //Redux
 import { useSelector } from "react-redux";
@@ -76,29 +78,35 @@ const CourseDetail = () => {
 
   return (
     <div className="courseDetail">
-      <div class="courses-container">
-        <div class="course">
-          <div class="course-preview">
-            <h6>Course</h6>
-            <h2>{course.name}</h2>
+      <div className="bannerCourse">
+        <div class="course-preview">
+          <h6>Course</h6>
+          <h2>{course.name}</h2>
+          <Rating value={course.rating} className="rating" />
+          <div className="infoCourse">
+            <div className="itemInfo">
+              <VscBook size={25} />
+              <p>{course.numberLesson} lesson</p>
+            </div>
 
-            <div className="infoCourse">
-              <div className="itemInfo">
-                <VscBook size={25} />
-                <p>{course.numberLesson} lesson</p>
-              </div>
-
-              <div className="itemInfo">
-                <FaUserFriends size={25} />
-                <p>{course.numberLearner} learners</p>
-              </div>
+            <div className="itemInfo">
+              <FaUserFriends size={25} />
+              <p>{course.numberLearner} learners</p>
+            </div>
+            <div className="itemInfo">
+              <BiTime size={25} />
+              <p>{course.numberLearner} hours</p>
             </div>
           </div>
-          <div class="course-info">
-            <div class="flex-wrapper">
-              <div class="single-chart">Description: {course.description}</div>
-            </div>
-          </div>
+        </div>
+        <div className="imgCourse">
+          <img src={course.image} alt={course.name} />
+        </div>
+      </div>
+      <div className="descriptionWrap">
+        <p>Description</p>
+        <div className="descriptionFlex">
+          <div className="description">{course.description}</div>
         </div>
       </div>
 
@@ -176,12 +184,11 @@ const CourseDetail = () => {
             <div className="border-course courseCard">
               <div className="coursetext">
                 <h3 className="coursename">
-                  <VscBook size={25} />
+                  <VscBook size={25} color="#379c9c" />
                   <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
                 </h3>
 
-                <p>{course.numberLesson} lessons</p>
-                <p>Difficulty: {course.level}</p>
+                <p>{course.numberLesson} topics</p>
               </div>
               <hr />
               <Link to={`/lecturer/lesson/${lesson._id}`}>
@@ -190,6 +197,9 @@ const CourseDetail = () => {
                   className="buttonLearnNow"
                 >
                   Detail
+                </button>
+                <button className="editButton">
+                  <RiFileEditFill color="#379c9c" size={25} />
                 </button>
               </Link>
             </div>

@@ -20,3 +20,13 @@
     width: 90%;
     margin-left: 20px;
   }
+
+  .descriptionLesson{
+    margin-top: 15px;
+    text-align: justify;
+    
+  }
+
+.topicname{
+  margin-bottom: 15px;
+}

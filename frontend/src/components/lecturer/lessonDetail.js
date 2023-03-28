@@ -101,28 +101,14 @@ const CourseDetail = () => {
 
   return (
     <div className="courseDetail">
-      <div class="courses-container">
-        <div class="course">
-          <div class="course-preview">
-            <h6>Lesson</h6>
-            <h2>{lesson.name}</h2>
-
-            <div className="infoCourse">
-              <div className="itemInfo">
-                <VscBook size={25} />
-                <p>Description: {lesson.description} </p>
-              </div>
-            </div>
-          </div>
-          <div class="course-info">
-            <div class="flex-wrapper">
-              <div class="single-chart">Description: {lesson.description}</div>
-            </div>
-          </div>
-        </div>
+      <div class="course-preview">
+        <h6>Lesson</h6>
+        <h2>{lesson.name}</h2>
+        <div className="descriptionLesson">{lesson.description}</div>
       </div>
+    
       <div className="wrap-createbutton">
-        <h1>Topic</h1>
+        <div className="pageName">Topics</div>
         <button
           onClick={handleShow}
           className="createButton courseCreateButton"
@@ -205,21 +191,21 @@ const CourseDetail = () => {
           >
             <div className="border-course courseCard">
               <div className="coursetext">
-                <h3 className="coursename">
+                <h3 className="coursename topicname">
+                
                   <Link to={`/lesson/${lesson._id}`}>
                     <RiFileList2Fill size={25} color="#379c9c" />
-                    {topic.name}
+                     {topic.name}
                   </Link>
                 </h3>
-
-                <p>Knowledge: {topic.knowledge}</p>
-                {
+                
+                {/* {
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: topic.knowledge,
+                      __html: topicList[0].knowledge,
                     }}
                   ></div>
-                }
+                } */}
               </div>
             </div>
           </div>
