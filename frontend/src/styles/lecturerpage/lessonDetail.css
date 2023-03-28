@@ -1,0 +1,32 @@
+.toolbar{
+    height: 55px !important;
+  }
+  .toolbar button{
+    box-shadow: none;
+  
+  }
+  .modal-backdrop{
+    z-index: 0 !important;
+  }
+  .modal{
+    z-index: 1 !important;
+  }
+
+  .nameTopicInput{
+    display: flex;
+    align-items: center;
+  }
+  .nameTopicInput input {
+    width: 90%;
+    margin-left: 20px;
+  }
+
+  .descriptionLesson{
+    margin-top: 15px;
+    text-align: justify;
+    
+  }
+
+.topicname{
+  margin-bottom: 15px;
+}
