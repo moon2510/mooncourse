@@ -1,20 +1,16 @@
 const Topic = require("../models/topic.model");
-const Lesson = require("../models/lesson.model");
+// const Lesson = require("../models/lesson.model");
 require("dotenv").config();
 
 const topicController = {
   createTopic: async (req, res) => {
     try {
-      const {
-        name,
-        knowledge,
-        lessonId
-      } = req.body;
+      const { name, description, courseId } = req.body;
 
       const newTopic = new Topic({
         name,
-        knowledge,
-        lessonId
+        description,
+        courseId,
       });
 
       // Save mongodb
@@ -29,10 +25,10 @@ const topicController = {
       return res.status(500).json({ msg: err.message });
     }
   },
-  getTopic: async (req, res) => {
+  getTopics: async (req, res) => {
     try {
       const topic = await Topic.find({
-        lessonId: req.params.lessonId
+        courseId: req.params.courseId,
       });
       if (topic) {
         res.json(topic);
@@ -44,17 +40,65 @@ const topicController = {
       return res.status(500).json({ msg: err.message });
     }
   },
-  upDateTopicIdList: async (req,res) => {
+  updateTopic: async (req, res) => {
+    console.log(req.params);
     try {
-      const topic = await Topic.find({
-        lessonId: req.params.lessonId
+      // const topic = await Topic.find({
+      //   topicId: req.params.topicId,
+      // });
+      const topicUpdate = await Topic.findByIdAndUpdate(
+        {
+          _id: req.body.topicId,
+        },
+        {
+          name: req.body.name,
+        },
+        {
+          description: req.body.description,
+        }
+      );
+
+      if (topicUpdate) {
+        res.json(topicUpdate);
+      } else {
+        res.status(404);
+        throw new Error("Topic not Found");
+      }
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  deleteTopic: async (req, res) => {
+    try {
+      const topicDelete = await Topic.findByIdAndDelete({
+        _id: req.body.topicId,
       });
 
-      const topicIdList = await Lesson.findByIdAndUpdate({
-        lessonId: req.params.lessonId
-      },{
-        topicId: topic
-      })
+      if (topicDelete) {
+        res.json(topicDelete);
+      } else {
+        res.status(404);
+        throw new Error("Topic not Found");
+      }
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  upDateTopicIdList: async (req, res) => {
+    try {
+      const topic = await Topic.find({
+        lessonId: req.params.lessonId,
+      });
+
+      const topicIdList = await Lesson.findByIdAndUpdate(
+        {
+          lessonId: req.params.lessonId,
+        },
+        {
+          topicId: topic,
+        }
+      );
 
       if (topicIdList) {
         res.json(topicIdList);
@@ -62,11 +106,10 @@ const topicController = {
         res.status(404);
         throw new Error("Topic not Found");
       }
-
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
-  }
+  },
 };
 
 module.exports = topicController;

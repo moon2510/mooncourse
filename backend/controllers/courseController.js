@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const courseControllers = {
   createCourse: async (req, res) => {
+    console.log(req.body);
     try {
       const {
         name,
@@ -43,7 +44,7 @@ const courseControllers = {
   getCourse: async (req, res) => {
     try {
       const courses = await Course.find({
-        authorId: req.params.authorId
+        authorId: req.params.authorId,
       });
       if (courses) {
         res.json(courses);
@@ -55,7 +56,7 @@ const courseControllers = {
       return res.status(500).json({ msg: err.message });
     }
   },
-  getAllCourse:  async (req, res) => {
+  getAllCourse: async (req, res) => {
     try {
       const courses = await Course.find({});
       if (courses) {
@@ -72,9 +73,9 @@ const courseControllers = {
   //   try {
   //     const courses = await Lesson.find(
   //       {courseId: req.params._id},
-        
+
   //     );
-      
+
   //     if (courses) {
   //       res.json(courses);
   //     } else {

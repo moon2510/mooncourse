@@ -46,7 +46,6 @@ const courseSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: [true],
     },
 
     topicArray: [{ type: mongoose.Schema.Types.ObjectId, ref: TopicModel}],
