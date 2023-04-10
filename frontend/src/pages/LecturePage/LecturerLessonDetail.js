@@ -2,20 +2,19 @@ import React from "react";
 
 import SideBar from "../../components/lecturer/sidebar";
 
-import LessonDetail from "../../components/lecturer/lessonDetail";
+import TopicDetail from "../../components/lecturer/topicDetail";
 import Header from "../../components/lecturer/header";
 
-const LecturerLessonDetail= () => {
+const LecturerTopicDetail = () => {
   window.scrollTo(0, 0);
- 
+
   return (
     <div>
-      <SideBar createcourse={"true"}/>
-      <Header/>
-      <LessonDetail />
-
+      <SideBar createcourse={"true"} />
+      <Header />
+      <TopicDetail />
     </div>
   );
 };
 
-export default LecturerLessonDetail;
+export default LecturerTopicDetail;

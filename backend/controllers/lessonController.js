@@ -1,19 +1,15 @@
-const Lesson = require("../models/topic.model");
+const Lesson = require("../models/lesson.model");
 require("dotenv").config();
 
 const lessonControllers = {
   createLesson: async (req, res) => {
     try {
-      const {
-        name,
-        description,
-        courseId
-      } = req.body;
+      const { name, knowledge, topicId } = req.body;
 
       const newLesson = new Lesson({
         name,
-        description,
-        courseId
+        knowledge,
+        topicId,
       });
 
       // Save mongodb
@@ -27,10 +23,10 @@ const lessonControllers = {
       return res.status(500).json({ msg: err.message });
     }
   },
-  getLesson: async (req, res) => {
+  getLessons: async (req, res) => {
     try {
       const lesson = await Lesson.find({
-        courseId: req.params.courseId
+        topicId: req.params.topicId,
       });
       if (lesson) {
         res.json(lesson);
