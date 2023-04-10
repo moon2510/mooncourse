@@ -10,6 +10,7 @@ import LecturerCreateCourse from "./pages/LecturePage/LectureCreateCourse";
 import LecturerCourseDetail from "./pages/LecturePage/LecturerCourseDetail";
 import LecturerLessonDetail from "./pages/LecturePage/LecturerLessonDetail";
 import LearnerCourseDetail from "./components/learner/learnerCourseDetail";
+import ErrorPayment from "./components/checkout/ErrorPayment";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           path="/lecturer/topic/:topicId"
           element={<LecturerLessonDetail />}
         />
+        <Route path="/errorPayment" element={<ErrorPayment />} />
       </Routes>
     </BrowserRouter>
   );

@@ -4,8 +4,7 @@ require("dotenv").config();
 const transactionControllers = {
   createTransaction: async (req, res) => {
     try {
-      const { courseId, userId, isPaid, progress, topicIdList, paidAt } =
-        req.body;
+      const { courseId, userId, isPaid } = req.body;
 
       const transaction = await Transaction.find({
         courseId: courseId,
@@ -20,9 +19,6 @@ const transactionControllers = {
           courseId,
           userId,
           isPaid,
-          progress,
-          topicIdList,
-          paidAt,
         });
 
         // Save mongodb

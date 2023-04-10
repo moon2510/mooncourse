@@ -10,20 +10,8 @@ const transactionSchema = new mongoose.Schema(
     },
     isPaid: {
       type: Boolean,
-      default: true
+      default: true,
     },
-    progress: {
-      type: Number,
-      default: 0,
-    },
-    topicIdList: [{ 
-      type: String,
-      default: []
-    }],
-    paidAt: {
-      type: Number,
-      default: 0,
-    }
   },
   { timestamps: true }
 );
