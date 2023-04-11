@@ -1,11 +1,14 @@
 import React from "react";
 
-function CheckoutForm() {
+function SuccessPayment() {
+  // useEffect
+  const params = (p) => new URLSearchParams(window.location.search).get(p);
+  console.log(params("courseId"));
   return (
     <div>
-      <a>checkout form</a>
+      <a>success Payment</a>
     </div>
   );
 }
 
-export default CheckoutForm;
+export default SuccessPayment;

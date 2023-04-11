@@ -23,7 +23,7 @@ const CheckoutController = {
             quantity: 1,
           },
         ],
-        success_url: `http://localhost:3000/`,
+        success_url: `http://localhost:3000/?courseId=${_id}`,
         cancel_url: `http://localhost:3000/errorPayment`,
       });
       console.log(sessions);
