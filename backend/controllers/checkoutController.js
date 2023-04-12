@@ -6,7 +6,7 @@ const stripe = new Stripe(
 
 const CheckoutController = {
   createTracsaction: async function (req, res, next) {
-    const { price, name, description } = req.body;
+    const { price, name, description, _id } = req.body;
     try {
       const sessions = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
@@ -18,12 +18,12 @@ const CheckoutController = {
               product_data: {
                 name: name,
               },
-              unit_amount: price,
+              unit_amount: price * 100,
             },
             quantity: 1,
           },
         ],
-        success_url: `http://localhost:3000/?courseId=${_id}`,
+        success_url: `http://localhost:3000/successPayment?courseId=${_id}`,
         cancel_url: `http://localhost:3000/errorPayment`,
       });
       console.log(sessions);

@@ -69,36 +69,6 @@ const LearnerCourseDetail = (total) => {
 
   return (
     <div>
-      <div className="coursecontainer row">
-        {lessonList.map((lesson) => (
-          <div
-            className="coursegrid col-lg-4 col-md-6 col-sm-6"
-            key={lesson._id}
-          >
-            <div className="border-course courseCard">
-              <div className="coursetext">
-                <h3 className="coursename">
-                  <VscBook size={25} />
-                  <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
-                </h3>
-
-                <p>{course.numberLesson} lessons</p>
-                <p>Difficulty: {course.level}</p>
-              </div>
-              <hr />
-              <Link to={`/lecturer/lesson/${lesson._id}`}>
-                <button
-                  onClick={() => reduxLessonDetail(lesson)}
-                  className="buttonLearnNow"
-                >
-                  Detail
-                </button>
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-
       <div className="coursedetail">
         <div className="banner">
           <div class="courses-container">
@@ -160,7 +130,7 @@ const LearnerCourseDetail = (total) => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             {lessonList.map((lesson) => (
               <div
                 className="coursegrid col-lg-4 col-md-6 col-sm-6"
@@ -250,8 +220,37 @@ const LearnerCourseDetail = (total) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <button class="floating-btn">Get in Touch</button>
+        </div>
+        <div className="coursecontainer row">
+          {lessonList.map((lesson) => (
+            <div
+              className="coursegrid col-lg-4 col-md-6 col-sm-6"
+              key={lesson._id}
+            >
+              <div className="border-course courseCard">
+                <div className="coursetext">
+                  <h3 className="coursename">
+                    <VscBook size={25} />
+                    <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
+                  </h3>
+
+                  <p>{course.numberLesson} lessons</p>
+                  <p>Difficulty: {course.level}</p>
+                </div>
+                <hr />
+                <Link to={`/lecturer/lesson/${lesson._id}`}>
+                  <button
+                    onClick={() => reduxLessonDetail(lesson)}
+                    className="buttonLearnNow"
+                  >
+                    Detail
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

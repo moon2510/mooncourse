@@ -7,5 +7,6 @@ const auth = require("../middleware/auth");
 const CheckoutController = require("../controllers/checkoutController");
 
 router.post("/createTransaction", CheckoutController.createTracsaction);
+router.post("/activeCourse", transactionController.createTransaction);
 
 module.exports = router;
