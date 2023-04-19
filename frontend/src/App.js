@@ -14,35 +14,42 @@ import ErrorPayment from "./components/checkout/ErrorPayment";
 import SuccessPayment from "./components/checkout/SuccessPayment";
 
 function App() {
+  const firstLogin = localStorage.getItem("checkLogin");
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
+        {firstLogin ? (
+          <>
+            <Route path="/lecturer/" element={<LecturerCoursePage />} />
+            <Route
+              path="/lecturer/createcourse"
+              element={<LecturerCreateCourse />}
+            />
+            <Route
+              path="/lecturer/course/:courseId"
+              element={<LecturerCourseDetail />}
+            />
+            <Route
+              path="/lecturer/topic/:topicId"
+              element={<LecturerLessonDetail />}
+            />
+            <Route path="/errorPayment" element={<ErrorPayment />} />
+            <Route path="/successPayment" element={<SuccessPayment />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/about" element={<About />} />
 
-        <Route
-          path="learner/course/:courseId"
-          element={<LearnerCourseDetail />}
-        />
-
-        <Route path="/lecturer" element={<LecturerCoursePage />} />
-        <Route
-          path="/lecturer/createcourse"
-          element={<LecturerCreateCourse />}
-        />
-        <Route
-          path="/lecturer/course/:courseId"
-          element={<LecturerCourseDetail />}
-        />
-        <Route
-          path="/lecturer/topic/:topicId"
-          element={<LecturerLessonDetail />}
-        />
-        <Route path="/errorPayment" element={<ErrorPayment />} />
-        <Route path="/successPayment" element={<SuccessPayment />} />
+            <Route
+              path="learner/course/:courseId"
+              element={<LearnerCourseDetail />}
+            />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );
