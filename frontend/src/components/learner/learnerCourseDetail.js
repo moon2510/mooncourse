@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import "../../styles/lecturerpage/createcourse.css";
 import "../../styles/learnerPage/learnerCourseDetail.css";
 import axios from "axios";
-import Dropdown from "react-bootstrap/Dropdown";
 
-import { AiFillPlusCircle } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
 import { BiTimeFive } from "react-icons/bi";
 import { VscBook } from "react-icons/vsc";
@@ -130,97 +128,6 @@ const LearnerCourseDetail = (total) => {
             </div>
           </div>
 
-          {/* <div>
-            {lessonList.map((lesson) => (
-              <div
-                className="coursegrid col-lg-4 col-md-6 col-sm-6"
-                key={lesson._id}
-              >
-                <div className="border-course courseCard">
-                  <div className="coursetext">
-                    <h3 className="coursename">
-                      <VscBook size={25} />
-                      <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
-                    </h3>
-
-                    <p>{course.numberLesson} lessons</p>
-                    <p>Difficulty: {course.level}</p>
-                  </div>
-                  <hr />
-                  <Link to={`/lecturer/lesson/${lesson._id}`}>
-                    <button
-                      onClick={() => reduxLessonDetail(lesson)}
-                      className="buttonLearnNow"
-                    >
-                      Detail
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            ))}
-            <div class="lesson-container">
-              <div class="lesson">
-                <h2>Lesson 1: Introduction and installation of Python</h2>
-                <h3>
-                  This topic covers the basics before starting the course. You
-                  will get acquainted with the Python programming language, how
-                  to install Visual Studio Code, and write and run your first
-                  basic Python program
-                </h3>
-                <div className="buttonWrap">
-                  <button className="btn detailButton">Detail</button>
-                </div>
-                <div className="listLesson">
-                  <div className="buttonWrap">
-                    <Link to={`/cart/`}>
-                      <button className="lessonButton">
-                        Introduction to the Basic Python Programming course
-                      </button>
-                    </Link>
-                  </div>
-                  <div className="buttonWrap">
-                    <button className="lessonButton">
-                      Install Python development environment
-                    </button>
-                  </div>
-                  <div className="buttonWrap ">
-                    <button className="lessonButton">
-                      Write and run your first program with Python
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="lesson-container">
-              <div class="lesson">
-                <h2>2. Làm quen với Python</h2>
-                <h3>Bắt đầu làm quen với ngôn ngữ python</h3>
-
-                <div className="buttonWrap">
-                  <button className="btn detailButton">Detail</button>
-                </div>
-                <div className="listLesson">
-                  <div className="buttonWrap">
-                    <Link to={`/courses/`}>
-                      <button className="lessonButton">
-                        Tổng quan về python
-                      </button>
-                    </Link>
-                  </div>
-                  <div className="buttonWrap">
-                    <button className="lessonButton">
-                      Chương trình Python đầu tiên
-                    </button>
-                  </div>
-                  <div className="buttonWrap ">
-                    <button className="lessonButton">Code "Hello World"</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <button class="floating-btn">Get in Touch</button>
         </div>
         <div className="coursecontainer row">

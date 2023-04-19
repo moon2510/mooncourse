@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import "../styles/login.css";
-import GoogleLogin from 'react-google-login';
+import GoogleLogin from "react-google-login";
 import FacebookLogin from "@greatsumini/react-facebook-login";
 
 function Login() {
@@ -35,7 +35,6 @@ function Login() {
       console.log("ABCDEF", userLogin);
 
       if (localStorage.getItem("role") === "learner") {
-        console.log("Role", user.role);
         window.location.href = "/";
       } else {
         window.location.href = "/lecturer";
@@ -139,21 +138,18 @@ function Login() {
               onProfileSuccess={(response) => loginWithFacebook(response)}
             />
           </div>
-          
         </div>
         <div className="social">
-        <div className="facebooklogin">
+          <div className="facebooklogin">
             <GoogleLogin
-              // appId="621744609751436"
-              // onFail={(error) => {
-              //   console.log("Login Failed!", error);
-              // }}
-              // onProfileSuccess={(response) => loginWithFacebook(response)}
+            // appId="621744609751436"
+            // onFail={(error) => {
+            //   console.log("Login Failed!", error);
+            // }}
+            // onProfileSuccess={(response) => loginWithFacebook(response)}
             />
           </div>
-          
         </div>
-        
       </div>
     </div>
   );

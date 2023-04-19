@@ -14,6 +14,7 @@ import ErrorPayment from "./components/checkout/ErrorPayment";
 import SuccessPayment from "./components/checkout/SuccessPayment";
 
 function App() {
+  const firstLogin = localStorage.getItem("checkLogin");
   return (
     <BrowserRouter>
       <Routes>
@@ -27,22 +28,26 @@ function App() {
           path="learner/course/:courseId"
           element={<LearnerCourseDetail />}
         />
-
-        <Route path="/lecturer" element={<LecturerCoursePage />} />
-        <Route
-          path="/lecturer/createcourse"
-          element={<LecturerCreateCourse />}
-        />
-        <Route
-          path="/lecturer/course/:courseId"
-          element={<LecturerCourseDetail />}
-        />
-        <Route
-          path="/lecturer/topic/:topicId"
-          element={<LecturerLessonDetail />}
-        />
-        <Route path="/errorPayment" element={<ErrorPayment />} />
-        <Route path="/successPayment" element={<SuccessPayment />} />
+        {firstLogin ? (
+          <>
+            <Route
+              path="/lecturer/createcourse"
+              element={<LecturerCreateCourse />}
+            />
+            <Route
+              path="/lecturer/course/:courseId"
+              element={<LecturerCourseDetail />}
+            />
+            <Route
+              path="/lecturer/topic/:topicId"
+              element={<LecturerLessonDetail />}
+            />
+            <Route path="/errorPayment" element={<ErrorPayment />} />
+            <Route path="/successPayment" element={<SuccessPayment />} />
+          </>
+        ) : (
+          <></>
+        )}
       </Routes>
     </BrowserRouter>
   );
