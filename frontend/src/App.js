@@ -18,18 +18,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
-
-        <Route
-          path="learner/course/:courseId"
-          element={<LearnerCourseDetail />}
-        />
         {firstLogin ? (
           <>
+            <Route path="/lecturer/" element={<LecturerCoursePage />} />
             <Route
               path="/lecturer/createcourse"
               element={<LecturerCreateCourse />}
@@ -46,7 +37,18 @@ function App() {
             <Route path="/successPayment" element={<SuccessPayment />} />
           </>
         ) : (
-          <></>
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/about" element={<About />} />
+
+            <Route
+              path="learner/course/:courseId"
+              element={<LearnerCourseDetail />}
+            />
+          </>
         )}
       </Routes>
     </BrowserRouter>
