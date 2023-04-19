@@ -34,16 +34,15 @@ const CreateCourse = () => {
   const uploadImage = async (file, name) => {
     try {
       if (!file) return null;
-      else {
-        alert('Upload is Stating...');
-        const storageRef = await ref(storage, `${file.name}`);
-        await uploadBytes(storageRef, file).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((downloadURL) => {
-            setCourse({ ...course, [name]: downloadURL });
-          });
+
+      alert('Upload is Stating...');
+      const storageRef = await ref(storage, `${file.name}`);
+      await uploadBytes(storageRef, file).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          setCourse({ ...course, [name]: downloadURL });
         });
-        return alert('Upload Successfully!');
-      }
+      });
+      return alert('Upload Successfully!');
     } catch (error) {
       return error;
     }

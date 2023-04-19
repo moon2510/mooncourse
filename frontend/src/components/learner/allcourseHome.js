@@ -8,23 +8,20 @@ import "../../styles/lecturerpage/lecturerpage.css";
 import { useDispatch } from "react-redux";
 import { updateCourseDetail } from "../.././redux/slices/courseSlice";
 
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AllCourse = () => {
   const [courses, setCourses] = useState("");
   const authorId = localStorage.getItem("id");
   const dispatch = useDispatch();
 
-
-
-
   const joinCourseSubmit = async (courseLearn) => {
     const transaction = {
       courseId: courseLearn._id,
       userId: localStorage.getItem("id"),
     };
-    console.log("Trans",transaction);
+    console.log("Trans", transaction);
     reduxCourseDetail(courseLearn);
     try {
       await axios.post("http://localhost:5000/transaction/createTransaction", {
@@ -35,11 +32,8 @@ const AllCourse = () => {
     }
   };
 
-
   const fetchData = async () => {
-    const result = await axios.get(
-      `http://localhost:5000/user/courseLearner`
-    );
+    const result = await axios.get(`http://localhost:5000/user/courseLearner`);
     setCourses(result.data);
   };
 
@@ -47,8 +41,6 @@ const AllCourse = () => {
     fetchData();
     AOS.init();
   }, []);
-
-
 
   if (courses === "") {
     return <div></div>;
@@ -104,7 +96,9 @@ const AllCourse = () => {
                       </div>
                       <Link to={`learner/course/${course._id}`}>
                         <button
-                          onClick={() => {joinCourseSubmit(course)}}
+                          onClick={() => {
+                            joinCourseSubmit(course);
+                          }}
                           className="buttonLearnNow"
                         >
                           Learn Now

@@ -19,6 +19,7 @@ import { updateTopicDetail } from "../../redux/slices/topicSlice";
 const LearnerCourseDetail = (total) => {
   console.log("Total", total);
   const course = useSelector(selectCourse);
+  console.log("Course", course);
   const dispatch = useDispatch();
 
   const [lessonList, setLessonList] = useState("");
@@ -26,7 +27,7 @@ const LearnerCourseDetail = (total) => {
 
   const fetchDataLesson = async () => {
     const result = await axios.get(
-      `http://localhost:5000/lecturer/getLesson/${course._id}`
+      `http://localhost:5000/lecturer/gettopics/${course._id}`
     );
     setLessonList(result.data);
   };
@@ -35,6 +36,21 @@ const LearnerCourseDetail = (total) => {
       `http://localhost:5000/lecturer/getLesson/${lessonId}`
     );
     setLessonList(result.data);
+  };
+
+  const renderPayment = async () => {
+    try {
+      const res = await axios.post(
+        `http://localhost:5000/transaction/createTransaction`,
+        {
+          ...course,
+        }
+      );
+      console.log(res);
+      window.location = res.data.url;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -53,36 +69,6 @@ const LearnerCourseDetail = (total) => {
 
   return (
     <div>
-      <div className="coursecontainer row">
-        {lessonList.map((lesson) => (
-          <div
-            className="coursegrid col-lg-4 col-md-6 col-sm-6"
-            key={lesson._id}
-          >
-            <div className="border-course courseCard">
-              <div className="coursetext">
-                <h3 className="coursename">
-                  <VscBook size={25} />
-                  <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
-                </h3>
-
-                <p>{course.numberLesson} lessons</p>
-                <p>Difficulty: {course.level}</p>
-              </div>
-              <hr />
-              <Link to={`/lecturer/lesson/${lesson._id}`}>
-                <button
-                  onClick={() => reduxLessonDetail(lesson)}
-                  className="buttonLearnNow"
-                >
-                  Detail
-                </button>
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-
       <div className="coursedetail">
         <div className="banner">
           <div class="courses-container">
@@ -94,7 +80,12 @@ const LearnerCourseDetail = (total) => {
               View all chapters <i class="fas fa-chevron-right"></i>
             </a> */}
 
-                <button class="btn">Continue</button>
+                <div className="gpBtn_detailCourse">
+                  <button class="btn">Continue</button>
+                  <button class="btn" onClick={renderPayment}>
+                    Join
+                  </button>
+                </div>
 
                 <div className="infoCourse">
                   <div className="itemInfo">
@@ -139,7 +130,7 @@ const LearnerCourseDetail = (total) => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             {lessonList.map((lesson) => (
               <div
                 className="coursegrid col-lg-4 col-md-6 col-sm-6"
@@ -229,8 +220,37 @@ const LearnerCourseDetail = (total) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <button class="floating-btn">Get in Touch</button>
+        </div>
+        <div className="coursecontainer row">
+          {lessonList.map((lesson) => (
+            <div
+              className="coursegrid col-lg-4 col-md-6 col-sm-6"
+              key={lesson._id}
+            >
+              <div className="border-course courseCard">
+                <div className="coursetext">
+                  <h3 className="coursename">
+                    <VscBook size={25} />
+                    <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
+                  </h3>
+
+                  <p>{course.numberLesson} lessons</p>
+                  <p>Difficulty: {course.level}</p>
+                </div>
+                <hr />
+                <Link to={`/lecturer/lesson/${lesson._id}`}>
+                  <button
+                    onClick={() => reduxLessonDetail(lesson)}
+                    className="buttonLearnNow"
+                  >
+                    Detail
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

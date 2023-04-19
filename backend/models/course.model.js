@@ -1,6 +1,6 @@
-
 const mongoose = require("mongoose");
 const TopicModel = require("./topic.model");
+const UserModel = require("./user.model");
 const courseSchema = new mongoose.Schema(
   {
     name: {
@@ -10,7 +10,7 @@ const courseSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, "Please provide description for course"]
+      required: [true, "Please provide description for course"],
     },
     level: {
       type: String,
@@ -48,8 +48,8 @@ const courseSchema = new mongoose.Schema(
       type: String,
     },
 
-    topicArray: [{ type: mongoose.Schema.Types.ObjectId, ref: TopicModel}],
-
+    topicArray: [{ type: mongoose.Schema.Types.ObjectId, ref: TopicModel }],
+    learnerArray: [{ type: mongoose.Schema.Types.ObjectId, ref: UserModel }],
   },
   { timestamps: true }
 );
