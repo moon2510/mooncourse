@@ -4,7 +4,8 @@ import axios from 'axios';
 import { storage } from '../../../src/firebase';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { ImUpload3 } from 'react-icons/im';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import NotifySuccess from '../toastify/success';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,17 +20,6 @@ const CreateCourse = () => {
     image: '',
   });
 
-  const notify = () =>
-    toast.success('Create Course Successfully', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
   //image firebase
   const uploadImage = async (file, name) => {
     try {
@@ -65,7 +55,7 @@ const CreateCourse = () => {
     console.log(results);
     if (results.data.status === 201) {
       console.log('hi');
-      notify();
+      NotifySuccess('Create Course Success');
       setTimeout(window.location.reload(), 5000);
     } else if (results.data.status === 500) {
       alert(results.data.msg);
@@ -74,19 +64,6 @@ const CreateCourse = () => {
 
   return (
     <div className='createCourse'>
-      <ToastContainer
-        position='top-right'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='light'
-      />
-      {/* Same as */}
       <ToastContainer />
       <form onSubmit={(e) => createCourseSubmit(e)} className='formCreateCourse'>
         <div className='row'>

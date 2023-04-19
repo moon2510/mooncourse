@@ -7,7 +7,6 @@ import Header from "../../components/lecturer/header";
 import HeaderLearn from "../../components/header";
 
 const LecturerCoursePage = () => {
-
   // if (localStorage.getItem("role") !== "lecturer" ){
   //   return (<div>
   //     <HeaderLearn/>
@@ -17,13 +16,12 @@ const LecturerCoursePage = () => {
   // }
 
   window.scrollTo(0, 0);
- 
+
   return (
     <div>
       <SideBar mycourse={"true"} />
-      <Header/>
-      <LecturerCourseList/>
-
+      <Header />
+      <LecturerCourseList />
     </div>
   );
 };

@@ -5,6 +5,10 @@ import '../../styles/lecturerpage/coursedetail.css';
 import '../../styles/lecturerpage/lessonDetail.css';
 import '../../styles/lecturerpage/topic-list.css';
 import axios from 'axios';
+
+import { ToastContainer } from 'react-toastify';
+import NotifySuccess from '../toastify/success';
+
 import { useDispatch } from 'react-redux';
 
 import Modal from 'react-bootstrap/Modal';
@@ -83,7 +87,7 @@ const TopicDetail = () => {
       await axios.post('http://localhost:5000/lecturer/createLesson', {
         ...lesson,
       });
-
+      NotifySuccess('Create Lesson Successfully');
       fetchData();
     } catch (err) {
       alert(err.response.data.msg);
@@ -92,6 +96,7 @@ const TopicDetail = () => {
 
   return (
     <div className='courseDetail'>
+      <ToastContainer />
       <div class='course-preview'>
         <h6>Topic</h6>
         <h2>{topic.name}</h2>
