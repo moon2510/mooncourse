@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../styles/lecturerpage/createcourse.css';
 import '../../styles/lecturerpage/coursedetail.css';
 import '../../styles/lecturerpage/lessonDetail.css';
+import '../../styles/lecturerpage/topic-list.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
@@ -40,7 +41,6 @@ import { selectTopic } from '../../redux/slices/topicSlice';
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const TopicDetail = () => {
   const topic = useSelector(selectTopic);
-  const dispatch = useDispatch();
   const [lessonList, setLessonList] = useState('');
 
   const [show, setShow] = useState(false);
@@ -51,8 +51,6 @@ const TopicDetail = () => {
     const result = await axios.get(`http://localhost:5000/lecturer/getLessons/${topic._id}`);
     setLessonList(result.data);
   };
-
-  const [lessonItem, setLessonItem] = useState(lessonList);
 
   useEffect(() => {
     fetchData();
@@ -80,9 +78,6 @@ const TopicDetail = () => {
   };
 
   const createLessonSubmit = async (e) => {
-    // Cách fix bug, click 2 lần button create
-    console.log('Ngu vcl', topic);
-
     e.preventDefault();
     try {
       await axios.post('http://localhost:5000/lecturer/createLesson', {
@@ -163,7 +158,9 @@ const TopicDetail = () => {
               <button type='button' className='secondarybutton' onClick={handleClose}>
                 Close
               </button>
-              <button type='submit'>Create Lesson</button>
+              <button type='submit' onClick={handleClose}>
+                Create Lesson
+              </button>
             </Modal.Footer>
           </form>
         </Modal.Body>
@@ -171,23 +168,15 @@ const TopicDetail = () => {
 
       <div className='coursecontainer row'>
         {lessonList.map((lesson) => (
-          <div className='coursegrid col-lg-4 col-md-6 col-sm-6' key={lesson._id}>
+          <div className='coursegrid topic-list' key={lesson._id}>
             <div className='border-course courseCard'>
               <div className='coursetext'>
                 <h3 className='coursename topicname'>
                   <Link to={`/lesson/${lesson._id}`}>
-                    <RiFileList2Fill size={25} color='#379c9c' />
+                    <RiFileList2Fill size={25} color='#379c9c' style={{ marginRight: 5 }} />
                     {lesson.name}
                   </Link>
                 </h3>
-
-                {
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: lesson.knowledge,
-                    }}
-                  ></div>
-                }
               </div>
             </div>
           </div>
