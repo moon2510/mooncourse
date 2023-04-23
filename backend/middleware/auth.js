@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "mooni2510@abcdef";
+const accessTokenSecret =
+  process.env.ACCESS_TOKEN_SECRET || "abcdefghijklmnopqrstuvwxyz";
 
 const auth = (req, res, next) => {
   try {

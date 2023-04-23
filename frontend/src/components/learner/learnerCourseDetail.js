@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/lecturerpage/createcourse.css";
 import "../../styles/learnerPage/learnerCourseDetail.css";
-import axios from "axios";
 
 import { FaUserFriends } from "react-icons/fa";
 import { BiTimeFive } from "react-icons/bi";
@@ -12,6 +11,7 @@ import { VscBook } from "react-icons/vsc";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCourse } from "../.././redux/slices/courseSlice";
 import { updateTopicDetail } from "../../redux/slices/topicSlice";
+import { axiosConfig } from "../../apiService/axiosConfig";
 
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const LearnerCourseDetail = (total) => {
@@ -24,13 +24,14 @@ const LearnerCourseDetail = (total) => {
   const [topicList, setTopicList] = useState("");
 
   const fetchDataLesson = async () => {
-    const result = await axios.get(
+    const result = await axiosConfig.get(
       `http://localhost:5000/lecturer/gettopics/${course._id}`
     );
+    console.log(result);
     setLessonList(result.data);
   };
   const fetchDataTopic = async (lessonId) => {
-    const result = await axios.get(
+    const result = await axiosConfig.get(
       `http://localhost:5000/lecturer/getLesson/${lessonId}`
     );
     setLessonList(result.data);
@@ -38,7 +39,7 @@ const LearnerCourseDetail = (total) => {
 
   const renderPayment = async () => {
     try {
-      const res = await axios.post(
+      const res = await axiosConfig.post(
         `http://localhost:5000/transaction/createTransaction`,
         {
           ...course,
@@ -55,7 +56,7 @@ const LearnerCourseDetail = (total) => {
     fetchDataLesson();
   }, []);
 
-  console.log(lessonList);
+  console.log("Lesson", lessonList);
 
   if (lessonList === "") {
     return <div></div>;

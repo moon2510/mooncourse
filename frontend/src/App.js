@@ -18,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {firstLogin ? (
+        {firstLogin && localStorage.getItem("role") === "lecturer" ? (
           <>
             <Route path="/lecturer/" element={<LecturerCoursePage />} />
             <Route
@@ -38,18 +38,17 @@ function App() {
           </>
         ) : (
           <>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/home" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/about" element={<About />} />
-
-            <Route
-              path="learner/course/:courseId"
-              element={<LearnerCourseDetail />}
-            />
           </>
         )}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route
+          path="/home/learner/course/:courseId"
+          element={<LearnerCourseDetail />}
+        />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );

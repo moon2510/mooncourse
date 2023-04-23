@@ -41,6 +41,7 @@ import {
 //Redux
 import { useSelector } from 'react-redux';
 import { selectTopic } from '../../redux/slices/topicSlice';
+import { axiosConfig } from '../../apiService/axiosConfig';
 
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const TopicDetail = () => {
@@ -52,7 +53,7 @@ const TopicDetail = () => {
   const handleShow = () => setShow(true);
 
   const fetchData = async () => {
-    const result = await axios.get(`http://localhost:5000/lecturer/getLessons/${topic._id}`);
+    const result = await axiosConfig.get(`http://localhost:5000/lecturer/getLessons/${topic._id}`);
     setLessonList(result.data);
   };
 

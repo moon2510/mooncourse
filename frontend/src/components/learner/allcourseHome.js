@@ -10,30 +10,35 @@ import { updateCourseDetail } from "../.././redux/slices/courseSlice";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { axiosConfig } from "../../apiService/axiosConfig";
 
 const AllCourse = () => {
-  const [courses, setCourses] = useState("");
+  const [courses, setCourses] = useState([]);
   const authorId = localStorage.getItem("id");
   const dispatch = useDispatch();
 
-  const joinCourseSubmit = async (courseLearn) => {
-    const transaction = {
-      courseId: courseLearn._id,
-      userId: localStorage.getItem("id"),
-    };
-    console.log("Trans", transaction);
-    reduxCourseDetail(courseLearn);
-    try {
-      await axios.post("http://localhost:5000/transaction/createTransaction", {
-        ...transaction,
-      });
-    } catch (err) {
-      alert(err.response.data.msg);
-    }
-  };
+  // const joinCourseSubmit = async (courseLearn) => {
+  //   const transaction = {
+  //     courseId: courseLearn._id,
+  //     userId: localStorage.getItem("id"),
+  //   };
+  //   console.log("Trans", transaction);
+  //   reduxCourseDetail(courseLearn);
+  //   try {
+  //     await axiosConfig.post(
+  //       "http://localhost:5000/transaction/createTransaction",
+  //       {
+  //         ...transaction,
+  //       }
+  //     );
+  //   } catch (err) {
+  //     alert(err.response.data.msg);
+  //   }
+  // };
 
   const fetchData = async () => {
     const result = await axios.get(`http://localhost:5000/user/courseLearner`);
+    console.log(result.data);
     setCourses(result.data);
   };
 
@@ -64,7 +69,7 @@ const AllCourse = () => {
                   data-aos-duration="1000"
                 >
                   <div className="border-course courseCard">
-                    <Link to={`/courses/${course._id}`}>
+                    <Link to={`/home/learner/course/${course._id}`}>
                       <div className="courseImage">
                         <img src={course.image} alt={course.name} />
                       </div>
@@ -72,7 +77,9 @@ const AllCourse = () => {
 
                     <div className="coursetext">
                       <h3 className="coursename">
-                        <Link to={`/courses/${course._id}`}>{course.name}</Link>
+                        <Link to={`/home/learner/course/${course._id}`}>
+                          {course.name}
+                        </Link>
                       </h3>
 
                       <Rating value={course.rating} className="rating" />
@@ -94,15 +101,8 @@ const AllCourse = () => {
                           </div>
                         )}
                       </div>
-                      <Link to={`learner/course/${course._id}`}>
-                        <button
-                          onClick={() => {
-                            joinCourseSubmit(course);
-                          }}
-                          className="buttonLearnNow"
-                        >
-                          Learn Now
-                        </button>
+                      <Link to={`/home/learner/course/${course._id}`}>
+                        <button className="buttonLearnNow">Learn Now</button>
                       </Link>
                     </div>
                   </div>

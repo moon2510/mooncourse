@@ -29,6 +29,7 @@ function Login() {
         localStorage.setItem("email", userLogin.data.user.email);
         localStorage.setItem("role", userLogin.data.user.role);
         localStorage.setItem("id", userLogin.data.user._id);
+        localStorage.setItem("token", userLogin.data.token);
       } else {
         localStorage.setItem("checkLogin", false);
       }

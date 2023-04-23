@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/lecturerpage/createcourse.css';
-import axios from 'axios';
 import { storage } from '../../../src/firebase';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { ImUpload3 } from 'react-icons/im';
@@ -8,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import NotifySuccess from '../toastify/success';
 
 import 'react-toastify/dist/ReactToastify.css';
+import { axiosConfig } from '../../apiService/axiosConfig';
 
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const CreateCourse = () => {
@@ -49,7 +49,7 @@ const CreateCourse = () => {
   const createCourseSubmit = async (e) => {
     e.preventDefault();
 
-    const results = await axios.post('http://localhost:5000/lecturer/createCourse', {
+    const results = await axiosConfig.post('http://localhost:5000/lecturer/createCourse', {
       ...course,
     });
     console.log(results);

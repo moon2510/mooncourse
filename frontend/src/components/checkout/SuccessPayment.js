@@ -3,6 +3,7 @@ import React from "react";
 import { DatePicker } from "antd";
 import "./SuccessPayment.css";
 import { Link } from "react-router-dom";
+import { axiosConfig } from "../../apiService/axiosConfig";
 
 function SuccessPayment() {
   const params = (p) => new URLSearchParams(window.location.search).get(p);
@@ -12,11 +13,14 @@ function SuccessPayment() {
       const userId = await localStorage.getItem("id");
 
       try {
-        await axios.post("http://localhost:5000/transaction/activeCourse", {
-          courseId,
-          userId,
-          isPaid: true,
-        });
+        await axiosConfig.post(
+          "http://localhost:5000/transaction/activeCourse",
+          {
+            courseId,
+            userId,
+            isPaid: true,
+          }
+        );
       } catch (error) {
         console.log(error);
       }
