@@ -38,7 +38,7 @@ const AllCourse = () => {
 
   const fetchData = async () => {
     const result = await axios.get(`http://localhost:5000/user/courseLearner`);
-    console.log(result.data);
+    console.log("Course", result.data);
     setCourses(result.data);
   };
 
@@ -102,7 +102,12 @@ const AllCourse = () => {
                         )}
                       </div>
                       <Link to={`/home/learner/course/${course._id}`}>
-                        <button className="buttonLearnNow">Learn Now</button>
+                        <button
+                          onClick={() => reduxCourseDetail(course)}
+                          className="buttonLearnNow"
+                        >
+                          Learn Now
+                        </button>
                       </Link>
                     </div>
                   </div>

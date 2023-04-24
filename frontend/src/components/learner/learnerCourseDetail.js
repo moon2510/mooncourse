@@ -17,25 +17,25 @@ import { axiosConfig } from "../../apiService/axiosConfig";
 const LearnerCourseDetail = (total) => {
   console.log("Total", total);
   const course = useSelector(selectCourse);
-  console.log("Course", course);
+  console.log("CourseID", course);
   const dispatch = useDispatch();
 
   const [lessonList, setLessonList] = useState("");
   const [topicList, setTopicList] = useState("");
 
-  const fetchDataLesson = async () => {
+  const fetchDataTopic = async () => {
     const result = await axiosConfig.get(
       `http://localhost:5000/lecturer/gettopics/${course._id}`
     );
-    console.log(result);
-    setLessonList(result.data);
+    console.log("Topic nè", result);
+    setTopicList(result.data);
   };
-  const fetchDataTopic = async (lessonId) => {
-    const result = await axiosConfig.get(
-      `http://localhost:5000/lecturer/getLesson/${lessonId}`
-    );
-    setLessonList(result.data);
-  };
+  // const fetchDataLesson = async (lessonId) => {
+  //   const result = await axiosConfig.get(
+  //     `http://localhost:5000/lecturer/getLesson/${lessonId}`
+  //   );
+  //   setLessonList(result.data);
+  // };
 
   const renderPayment = async () => {
     try {
@@ -53,12 +53,12 @@ const LearnerCourseDetail = (total) => {
   };
 
   useEffect(() => {
-    fetchDataLesson();
-  }, []);
+    fetchDataTopic();
+  }, [course._id]);
 
-  console.log("Lesson", lessonList);
+  console.log("Lesson", topicList);
 
-  if (lessonList === "") {
+  if (topicList === "") {
     return <div></div>;
   }
 
@@ -132,25 +132,25 @@ const LearnerCourseDetail = (total) => {
           <button class="floating-btn">Get in Touch</button>
         </div>
         <div className="coursecontainer row">
-          {lessonList.map((lesson) => (
+          {topicList.map((topic) => (
             <div
               className="coursegrid col-lg-4 col-md-6 col-sm-6"
-              key={lesson._id}
+              key={topic._id}
             >
               <div className="border-course courseCard">
                 <div className="coursetext">
                   <h3 className="coursename">
                     <VscBook size={25} />
-                    <Link to={`/lesson/${lesson._id}`}>{lesson.name}</Link>
+                    <Link to={`/lesson/${topic._id}`}>{topic.name}</Link>
                   </h3>
 
                   <p>{course.numberLesson} lessons</p>
                   <p>Difficulty: {course.level}</p>
                 </div>
                 <hr />
-                <Link to={`/lecturer/lesson/${lesson._id}`}>
+                <Link to={`/lecturer/lesson/${topic._id}`}>
                   <button
-                    onClick={() => reduxLessonDetail(lesson)}
+                    onClick={() => reduxLessonDetail(topic)}
                     className="buttonLearnNow"
                   >
                     Detail
