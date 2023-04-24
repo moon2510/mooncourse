@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/lecturerpage/createcourse.css';
 import '../../styles/lecturerpage/coursedetail.css';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Rating from '../home/rating';
@@ -17,6 +16,7 @@ import { BiTime } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { selectCourse } from '../.././redux/slices/courseSlice';
 import { updateTopicDetail } from '../../redux/slices/topicSlice';
+import { axiosConfig } from '../../apiService/axiosConfig';
 
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const CourseDetail = () => {
@@ -41,7 +41,7 @@ const CourseDetail = () => {
 
   const fetchData = async () => {
     //get topics
-    const result = await axios.get(`http://localhost:5000/lecturer/getTopics/${course._id}`);
+    const result = await axiosConfig.get(`http://localhost:5000/lecturer/getTopics/${course._id}`);
     setTopicList(result.data);
   };
 
@@ -81,15 +81,15 @@ const CourseDetail = () => {
     e.preventDefault();
     try {
       if (topic.status === 'create') {
-        await axios.post('http://localhost:5000/lecturer/create_topic', {
+        await axiosConfig.post('http://localhost:5000/lecturer/create_topic', {
           ...topic,
         });
       } else if (topic.status === 'edit') {
-        await axios.put('http://localhost:5000/lecturer/update_topic', {
+        await axiosConfig.put('http://localhost:5000/lecturer/update_topic', {
           ...topic,
         });
       } else {
-        await axios.post('http://localhost:5000/lecturer/delete_topic', {
+        await axiosConfig.post('http://localhost:5000/lecturer/delete_topic', {
           ...topic,
         });
       }

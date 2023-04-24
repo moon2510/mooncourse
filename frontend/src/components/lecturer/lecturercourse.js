@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { RiMoneyDollarCircleFill } from 'react-icons/ri';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import Rating from '../home/rating';
-import axios from 'axios';
 import '../../styles/lecturerpage/lecturerpage.css';
 import { useDispatch } from 'react-redux';
 import { updateCourseDetail } from '../.././redux/slices/courseSlice';
@@ -14,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Modal from 'react-bootstrap/Modal';
 import CreateCourse from '../../components/lecturer/createcourse';
+import { axiosConfig } from '../../apiService/axiosConfig';
 
 const LecturerCourseList = () => {
   const [courses, setCourses] = useState('');
@@ -31,7 +31,7 @@ const LecturerCourseList = () => {
   }, [show]);
 
   const fetchData = async () => {
-    const result = await axios.get(`http://localhost:5000/lecturer/mycourse/${authorId}`);
+    const result = await axiosConfig.get(`http://localhost:5000/lecturer/mycourse/${authorId}`);
     setCourses(result.data);
   };
 

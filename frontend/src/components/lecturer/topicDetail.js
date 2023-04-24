@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import '../../styles/lecturerpage/createcourse.css';
 import '../../styles/lecturerpage/coursedetail.css';
 import '../../styles/lecturerpage/lessonDetail.css';
+import '../../styles/lecturerpage/topic-list.css';
 import axios from 'axios';
+
+import { ToastContainer } from 'react-toastify';
+import NotifySuccess from '../toastify/success';
+
 import { useDispatch } from 'react-redux';
 
 import Modal from 'react-bootstrap/Modal';
@@ -36,11 +41,11 @@ import {
 //Redux
 import { useSelector } from 'react-redux';
 import { selectTopic } from '../../redux/slices/topicSlice';
+import { axiosConfig } from '../../apiService/axiosConfig';
 
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const TopicDetail = () => {
   const topic = useSelector(selectTopic);
-  const dispatch = useDispatch();
   const [lessonList, setLessonList] = useState('');
 
   const [show, setShow] = useState(false);
@@ -48,11 +53,9 @@ const TopicDetail = () => {
   const handleShow = () => setShow(true);
 
   const fetchData = async () => {
-    const result = await axios.get(`http://localhost:5000/lecturer/getLessons/${topic._id}`);
+    const result = await axiosConfig.get(`http://localhost:5000/lecturer/getLessons/${topic._id}`);
     setLessonList(result.data);
   };
-
-  const [lessonItem, setLessonItem] = useState(lessonList);
 
   useEffect(() => {
     fetchData();
@@ -80,15 +83,12 @@ const TopicDetail = () => {
   };
 
   const createLessonSubmit = async (e) => {
-    // Cách fix bug, click 2 lần button create
-    console.log('Ngu vcl', topic);
-
     e.preventDefault();
     try {
       await axios.post('http://localhost:5000/lecturer/createLesson', {
         ...lesson,
       });
-
+      NotifySuccess('Create Lesson Successfully');
       fetchData();
     } catch (err) {
       alert(err.response.data.msg);
@@ -97,6 +97,7 @@ const TopicDetail = () => {
 
   return (
     <div className='courseDetail'>
+      <ToastContainer />
       <div class='course-preview'>
         <h6>Topic</h6>
         <h2>{topic.name}</h2>
@@ -163,7 +164,9 @@ const TopicDetail = () => {
               <button type='button' className='secondarybutton' onClick={handleClose}>
                 Close
               </button>
-              <button type='submit'>Create Lesson</button>
+              <button type='submit' onClick={handleClose}>
+                Create Lesson
+              </button>
             </Modal.Footer>
           </form>
         </Modal.Body>
@@ -171,23 +174,15 @@ const TopicDetail = () => {
 
       <div className='coursecontainer row'>
         {lessonList.map((lesson) => (
-          <div className='coursegrid col-lg-4 col-md-6 col-sm-6' key={lesson._id}>
+          <div className='coursegrid topic-list' key={lesson._id}>
             <div className='border-course courseCard'>
               <div className='coursetext'>
                 <h3 className='coursename topicname'>
                   <Link to={`/lesson/${lesson._id}`}>
-                    <RiFileList2Fill size={25} color='#379c9c' />
+                    <RiFileList2Fill size={25} color='#379c9c' style={{ marginRight: 5 }} />
                     {lesson.name}
                   </Link>
                 </h3>
-
-                {
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: lesson.knowledge,
-                    }}
-                  ></div>
-                }
               </div>
             </div>
           </div>
