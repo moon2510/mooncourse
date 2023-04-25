@@ -13,30 +13,36 @@ import LearnerCourseDetail from "./components/learner/learnerCourseDetail";
 import ErrorPayment from "./components/checkout/ErrorPayment";
 import SuccessPayment from "./components/checkout/SuccessPayment";
 import LearnerTopicDetail from "./components/learner/learnerTopicDetail";
+import LearnerLessonDetail from "./components/learner/learnerLessonDetail";
 
 function App() {
   const firstLogin = localStorage.getItem("checkLogin");
   return (
     <BrowserRouter>
       <Routes>
-        {firstLogin && localStorage.getItem("role") === "lecturer" ? (
-          <>
-            <Route path="/lecturer/" element={<LecturerCoursePage />} />
-            <Route
-              path="/lecturer/createcourse"
-              element={<LecturerCreateCourse />}
-            />
-            <Route
-              path="/lecturer/course/:courseId"
-              element={<LecturerCourseDetail />}
-            />
-            <Route
-              path="/lecturer/topic/:topicId"
-              element={<LecturerLessonDetail />}
-            />
-            <Route path="/errorPayment" element={<ErrorPayment />} />
-            <Route path="/successPayment" element={<SuccessPayment />} />
-          </>
+        {firstLogin ? (
+          localStorage.getItem("role") === "lecturer" ? (
+            <>
+              <Route path="/lecturer/" element={<LecturerCoursePage />} />
+              <Route
+                path="/lecturer/createcourse"
+                element={<LecturerCreateCourse />}
+              />
+              <Route
+                path="/lecturer/course/:courseId"
+                element={<LecturerCourseDetail />}
+              />
+              <Route
+                path="/lecturer/topic/:topicId"
+                element={<LecturerLessonDetail />}
+              />
+            </>
+          ) : (
+            <>
+              <Route path="/errorPayment" element={<ErrorPayment />} />
+              <Route path="/successPayment" element={<SuccessPayment />} />
+            </>
+          )
         ) : (
           <>
             <Route path="/login" element={<Login />} />
@@ -52,6 +58,10 @@ function App() {
         <Route
           path="/home/learner/course/topic/:topicId"
           element={<LearnerTopicDetail />}
+        />
+        <Route
+          path="/home/learner/course/topic/lesson/:lessonId"
+          element={<LearnerLessonDetail />}
         />
         <Route path="/about" element={<About />} />
       </Routes>

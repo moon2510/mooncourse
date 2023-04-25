@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../styles/lecturerpage/createcourse.css";
 import "../../styles/learnerPage/learnerCourseDetail.css";
 
@@ -15,31 +15,26 @@ import { axiosConfig } from "../../apiService/axiosConfig";
 //name,description, level,  numberLesson, numberLearner, rating,  price, authorId
 const LearnerLessonDetail = () => {
   const topic = useSelector(selectTopic);
+  const { lessonId } = useParams();
 
-  const dispatch = useDispatch();
+  const [lesson, setLesson] = useState("");
 
-  const [lessonList, setLessonList] = useState("");
-
-  const fetchDataLesson = async () => {
+  const fetchDataOneLesson = async () => {
     const result = await axiosConfig.get(
-      `http://localhost:5000/lecturer/getLessons/${topic._id}`
+      `http://localhost:5000/lecturer/getOneLesson/${lessonId}`
     );
-    setLessonList(result.data);
+    setLesson(result.data);
   };
 
   useEffect(() => {
-    fetchDataLesson();
-  }, [topic._id]);
+    fetchDataOneLesson();
+  }, []);
 
-  console.log("Lesson", lessonList);
+  console.log("Lesson", lesson);
 
-  if (lessonList === "") {
+  if (lesson === "") {
     return <div></div>;
   }
-
-  const reduxTopicDetail = (topic) => {
-    dispatch(updateTopicDetail(topic));
-  };
 
   return (
     <div>
@@ -49,36 +44,12 @@ const LearnerLessonDetail = () => {
           <h2>{topic.name}</h2>
           <div className="descriptionLesson">{topic.description}</div>
         </div>
-
-        <div className="coursecontainer row">
-          {lessonList.map((topic) => (
-            <div
-              className="coursegrid col-lg-4 col-md-6 col-sm-6"
-              key={topic._id}
-            >
-              <div className="border-course courseCard">
-                <div className="coursetext">
-                  <h3 className="coursename">
-                    <VscBook size={25} />
-                    <Link to={`/lesson/${topic._id}`}>{topic.name}</Link>
-                  </h3>
-
-                  {/* <p>{} lessons</p>
-                  <p>Difficulty: .level}</p> */}
-                </div>
-                <hr />
-                <Link to={`/home/learner/course/topic/${topic._id}`}>
-                  <button
-                    onClick={() => reduxTopicDetail(topic)}
-                    className="buttonLearnNow"
-                  >
-                    Detail
-                  </button>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+        <div
+          style={{ padding: 50 }}
+          dangerouslySetInnerHTML={{
+            __html: lesson.knowledge,
+          }}
+        ></div>
       </div>
     </div>
   );

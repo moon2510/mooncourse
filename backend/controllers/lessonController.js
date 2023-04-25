@@ -38,6 +38,21 @@ const lessonControllers = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  getOneLesson: async (req, res) => {
+    try {
+      const lesson = await Lesson.findById({
+        _id: req.params.lessonId,
+      });
+      if (lesson) {
+        res.json(lesson);
+      } else {
+        res.status(404);
+        throw new Error("Lesson not Found");
+      }
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 module.exports = lessonControllers;

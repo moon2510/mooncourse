@@ -37,7 +37,7 @@ function SuccessPayment() {
           style={{ width: "200px" }}
         />
         <h1>Payment Successfully</h1>
-        <Link to={`/learner/course/${params("courseId")}`}>
+        <Link to={`/home/learner/course/${params("courseId")}`}>
           <button className="accept">OK</button>
         </Link>
       </div>

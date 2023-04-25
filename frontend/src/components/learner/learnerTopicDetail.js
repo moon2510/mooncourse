@@ -51,30 +51,20 @@ const LearnerTopicDetail = () => {
         </div>
 
         <div className="coursecontainer row">
-          {lessonList.map((topic) => (
-            <div
-              className="coursegrid col-lg-4 col-md-6 col-sm-6"
-              key={topic._id}
-            >
+          {lessonList.map((lesson) => (
+            <div className="coursegrid " key={lesson._id}>
               <div className="border-course courseCard">
                 <div className="coursetext">
                   <h3 className="coursename">
                     <VscBook size={25} />
-                    <Link to={`/lesson/${topic._id}`}>{topic.name}</Link>
+                    <Link
+                      to={`/home/learner/course/topic/lesson/${lesson._id}`}
+                    >
+                      {lesson.name}
+                    </Link>
                   </h3>
-
-                  {/* <p>{} lessons</p>
-                  <p>Difficulty: .level}</p> */}
                 </div>
                 <hr />
-                <Link to={`/home/learner/course/topic/${topic._id}`}>
-                  <button
-                    onClick={() => reduxTopicDetail(topic)}
-                    className="buttonLearnNow"
-                  >
-                    Detail
-                  </button>
-                </Link>
               </div>
             </div>
           ))}
