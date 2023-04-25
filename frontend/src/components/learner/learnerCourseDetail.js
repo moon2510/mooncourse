@@ -62,8 +62,8 @@ const LearnerCourseDetail = (total) => {
     return <div></div>;
   }
 
-  const reduxLessonDetail = (lesson) => {
-    dispatch(updateTopicDetail(lesson));
+  const reduxTopicDetail = (topic) => {
+    dispatch(updateTopicDetail(topic));
   };
 
   return (
@@ -148,9 +148,9 @@ const LearnerCourseDetail = (total) => {
                   <p>Difficulty: {course.level}</p>
                 </div>
                 <hr />
-                <Link to={`/lecturer/lesson/${topic._id}`}>
+                <Link to={`/home/learner/course/topic/${topic._id}`}>
                   <button
-                    onClick={() => reduxLessonDetail(topic)}
+                    onClick={() => reduxTopicDetail(topic)}
                     className="buttonLearnNow"
                   >
                     Detail

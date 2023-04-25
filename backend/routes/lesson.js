@@ -6,6 +6,7 @@ const auth = require("../middleware/auth");
 
 router.post("/createLesson", auth, lessonControllers.createLesson);
 router.get("/getLessons/:topicId", lessonControllers.getLessons);
+router.get("/getOneLesson/:lessonId", lessonControllers.getOneLesson);
 // router.get('/myCourse/:authorId', courseControllers.getCourse)
 
 module.exports = router;
