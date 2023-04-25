@@ -12,6 +12,7 @@ import LecturerLessonDetail from "./pages/LecturePage/LecturerLessonDetail";
 import LearnerCourseDetail from "./components/learner/learnerCourseDetail";
 import ErrorPayment from "./components/checkout/ErrorPayment";
 import SuccessPayment from "./components/checkout/SuccessPayment";
+import LearnerTopicDetail from "./components/learner/learnerTopicDetail";
 
 function App() {
   const firstLogin = localStorage.getItem("checkLogin");
@@ -47,6 +48,10 @@ function App() {
         <Route
           path="/home/learner/course/:courseId"
           element={<LearnerCourseDetail />}
+        />
+        <Route
+          path="/home/learner/course/topic/:topicId"
+          element={<LearnerTopicDetail />}
         />
         <Route path="/about" element={<About />} />
       </Routes>
